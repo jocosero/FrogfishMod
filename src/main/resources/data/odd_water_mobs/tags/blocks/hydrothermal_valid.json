@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:magma_block",
+    "odd_water_mobs:hydrothermal_vent"
+  ]
+}

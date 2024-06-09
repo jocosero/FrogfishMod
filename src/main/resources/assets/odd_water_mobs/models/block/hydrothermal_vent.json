@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "odd_water_mobs:block/hydrothermal_vent_bottom",
+    "up": "odd_water_mobs:block/hydrothermal_vent_top",
+    "north": "odd_water_mobs:block/hydrothermal_vent",
+    "east": "odd_water_mobs:block/hydrothermal_vent",
+    "south": "odd_water_mobs:block/hydrothermal_vent",
+    "west": "odd_water_mobs:block/hydrothermal_vent",
+    "particle": "odd_water_mobs:block/hydrothermal_vent_bottom"
+  }
+}

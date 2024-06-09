@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "###",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "odd_water_mobs:bioluminescent_scales"
+    }
+  },
+  "result": {
+    "item": "odd_water_mobs:bioluminescent_block"
+  }
+}

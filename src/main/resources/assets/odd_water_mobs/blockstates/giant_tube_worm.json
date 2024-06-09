@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "is_worm_base=false,in_land=false":  { "model": "odd_water_mobs:block/giant_tube_worm_top" },
+    "is_worm_base=true,in_land=false":  { "model": "odd_water_mobs:block/giant_tube_worm_bottom" },
+    "in_land=true":  { "model": "odd_water_mobs:block/giant_tube_worm_land" }
+  }
+}

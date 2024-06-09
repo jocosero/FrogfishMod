@@ -1,0 +1,8 @@
+{
+  "parent": "block/inner_stairs",
+  "textures": {
+    "bottom": "odd_water_mobs:block/deep_sandstone_bottom",
+    "top": "odd_water_mobs:block/deep_sandstone_top",
+    "side": "odd_water_mobs:block/deep_sandstone"
+  }
+}

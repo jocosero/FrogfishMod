@@ -1,0 +1,23 @@
+{
+  "pools": [
+    {
+      "rolls": 1,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "odd_water_mobs:glowing_anemone",
+          "conditions": [
+            {
+              "condition": "minecraft:match_tool",
+              "predicate": {
+                "items": [
+                  "minecraft:shears"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

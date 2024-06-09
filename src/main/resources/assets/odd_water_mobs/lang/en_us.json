@@ -1,0 +1,107 @@
+{
+  "entity.odd_water_mobs.anglerfish": "Anglerfish",
+  "entity.odd_water_mobs.isopod": "Isopod",
+  "entity.odd_water_mobs.horseshoe_crab": "Horseshoe Crab",
+  "entity.odd_water_mobs.coelacanth": "Coelacanth",
+  "entity.odd_water_mobs.frogfish": "Frogfish",
+
+  "item.odd_water_mobs.anglerfish_bucket": "Bucket of Anglerfish",
+
+  "item.odd_water_mobs.isopod_bucket": "Bucket of Isopod",
+  "item.odd_water_mobs.horseshoe_crab_bucket": "Bucket of Horseshoe Crab",
+  "item.odd_water_mobs.coelacanth_bucket": "Bucket of Coelacanth",
+
+  "item.odd_water_mobs.frogfish_bucket": "Bucket of Frogfish",
+  "tooltip.odd_water_mobs.white_frogfish": "White",
+  "tooltip.odd_water_mobs.orange_frogfish": "Orange",
+  "tooltip.odd_water_mobs.yellow_frogfish": "Yellow",
+
+
+  "item.odd_water_mobs.anglerfish_spawn_egg": "Anglerfish Spawn Egg",
+  "item.odd_water_mobs.isopod_spawn_egg": "Isopod Spawn Egg",
+  "item.odd_water_mobs.horseshoe_crab_spawn_egg": "Horseshoe Crab Spawn Egg",
+  "item.odd_water_mobs.coelacanth_spawn_egg": "Coelacanth Spawn Egg",
+  "item.odd_water_mobs.frogfish_spawn_egg": "Frogfish Spawn Egg",
+
+  "item.odd_water_mobs.raw_anglerfish": "Raw Anglerfish",
+  "item.odd_water_mobs.raw_isopod": "Isopod",
+  "item.odd_water_mobs.cooked_isopod": "Cooked Isopod",
+  "item.odd_water_mobs.horseshoe_crab_thorax": "Horseshoe Crab Thorax",
+  "item.odd_water_mobs.coelacanth": "Coelacanth",
+  "item.odd_water_mobs.frogfish": "Frogfish",
+  "item.odd_water_mobs.raw_spider_crab_leg": "Raw Spider Crab Leg",
+  "item.odd_water_mobs.cooked_spider_crab_leg": "Cooked Spider Crab Leg",
+  "item.odd_water_mobs.raw_ghost_shark": "Ghost Shark",
+  "item.odd_water_mobs.ghost_shark_sting": "Ghost Shark Sting",
+  "item.odd_water_mobs.raw_mudskipper": "Raw Mudskipper",
+  "item.odd_water_mobs.cooked_mudskipper": "Cooked Mudskipper",
+  "item.odd_water_mobs.mudskipper_fin": "Mudskipper Fin",
+  "item.odd_water_mobs.deep_sea_fish": "Deep Sea Fish",
+  "item.odd_water_mobs.raw_squat_lobster_tail": "Raw Squat Lobster Tail",
+  "item.odd_water_mobs.cooked_squat_lobster_tail": "Cooked Squat Lobster Tail",
+  "item.odd_water_mobs.sea_pig": "Sea Pig",
+
+  "block.odd_water_mobs.deep_sand":"Deep Sand",
+  "block.odd_water_mobs.deep_sandstone":"Deep Sandstone",
+  "block.odd_water_mobs.deep_sandstone_slab":"Deep Sandstone Slab",
+  "block.odd_water_mobs.deep_sandstone_stairs":"Deep Sandstone Stairs",
+  "block.odd_water_mobs.deep_sandstone_wall":"Deep Sandstone Wall",
+  "block.odd_water_mobs.cut_deep_sandstone":"Cut Deep Sandstone",
+  "block.odd_water_mobs.cut_deep_sandstone_slab":"Cut Deep Sandstone Slab",
+  "block.odd_water_mobs.cut_deep_sandstone_stairs":"Cut Deep Sandstone Stairs",
+  "block.odd_water_mobs.chiseled_deep_sandstone":"Chiseled Deep Sandstone",
+  "block.odd_water_mobs.smooth_deep_sandstone":"Smooth Deep Sandstone",
+  "block.odd_water_mobs.smooth_deep_sandstone_slab":"Smooth Deep Sandstone Slab",
+  "block.odd_water_mobs.smooth_deep_sandstone_stairs":"Smooth Deep Sandstone Stairs",
+  "block.odd_water_mobs.giant_tube_worm":"Giant Tube Worm",
+  "block.odd_water_mobs.bioluminescent_scales":"Bioluminescent Scales",
+  "block.odd_water_mobs.bioluminescent_block":"Bioluminescent Block",
+  "block.odd_water_mobs.glowing_anemone":"Glowing Anemone",
+  "block.odd_water_mobs.hydrothermal_vent":"Hydrothermal Vent",
+
+  "effect.odd_water_mobs.sinking": "Sinking",
+  "effect.odd_water_mobs.alluring": "Allure",
+  "effect.odd_water_mobs.healing_vigor": "Healing Vigor",
+  "effect.odd_water_mobs.poison_protection": "Poison Protection",
+
+  "item.minecraft.potion.effect.healing_vigor_potion": "Potion of Healing Vigor",
+  "item.minecraft.splash_potion.effect.healing_vigor_potion": "Splash Potion of Healing Vigor",
+  "item.minecraft.lingering_potion.effect.healing_vigor_potion": "Lingering Potion of Healing Vigor",
+  "item.minecraft.tipped_arrow.effect.healing_vigor_potion": "Arrow of Healing Vigor",
+
+  "item.minecraft.potion.effect.mudskipping_potion": "Potion of Mudskipping",
+  "item.minecraft.splash_potion.effect.mudskipping_potion": "Splash Potion of Mudskipping",
+  "item.minecraft.lingering_potion.effect.mudskipping_potion": "Lingering Potion of Mudskipping",
+  "item.minecraft.tipped_arrow.effect.mudskipping_potion": "Arrow of Mudskipping",
+
+  "item.minecraft.potion.effect.long_mudskipping_potion": "Potion of Mudskipping",
+  "item.minecraft.splash_potion.effect.long_mudskipping_potion": "Splash Potion of Mudskipping",
+  "item.minecraft.lingering_potion.effect.long_mudskipping_potion": "Lingering Potion of Mudskipping",
+  "item.minecraft.tipped_arrow.effect.long_mudskipping_potion": "Arrow of Mudskipping",
+
+  "item.minecraft.potion.effect.poison_protection_potion": "Potion of Poison Protection",
+  "item.minecraft.splash_potion.effect.poison_protection_potion": "Splash Potion of Poison Protection",
+  "item.minecraft.lingering_potion.effect.poison_protection_potion": "Lingering Potion of Poison Protection",
+  "item.minecraft.tipped_arrow.effect.poison_protection_potion": "Arrow of Poison Protection",
+
+  "item.minecraft.potion.effect.long_poison_protection_potion": "Potion of Poison Protection",
+  "item.minecraft.splash_potion.effect.long_poison_protection_potion": "Splash Potion of Poison Protection",
+  "item.minecraft.lingering_potion.effect.long_poison_protection_potion": "Lingering Potion of Poison Protection",
+  "item.minecraft.tipped_arrow.effect.long_poison_protection_potion": "Arrow of Poison Protection",
+
+  "item.minecraft.potion.effect.alluring_potion": "Potion of Allure",
+  "item.minecraft.splash_potion.effect.alluring_potion": "Splash Potion of Allure",
+  "item.minecraft.lingering_potion.effect.alluring_potion": "Lingering Potion of Allure",
+  "item.minecraft.tipped_arrow.effect.alluring_potion": "Arrow of Allure",
+
+  "item.minecraft.potion.effect.long_alluring_potion": "Potion of Allure",
+  "item.minecraft.splash_potion.effect.long_alluring_potion": "Splash Potion of Allure",
+  "item.minecraft.lingering_potion.effect.long_alluring_potion": "Lingering Potion of Allure",
+  "item.minecraft.tipped_arrow.effect.long_alluring_potion": "Arrow of Allure",
+
+  "biome.odd_water_mobs.deep_ocean_dunes": "Deep Ocean Dunes",
+
+  "particle.odd_water_mobs:hydrothermal_smoke": "Hydrothermal Smoke",
+
+  "creativetab.odd_water_mobs": "Odd Water Mobs"
+}

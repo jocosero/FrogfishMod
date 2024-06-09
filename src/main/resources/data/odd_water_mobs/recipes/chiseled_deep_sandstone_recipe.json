@@ -1,0 +1,20 @@
+{
+  "group": "odd_water_mobs",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "0",
+    "1"
+  ],
+  "key": {
+    "0": {
+      "item": "odd_water_mobs:deep_sandstone_slab"
+    },
+    "1": {
+      "item": "odd_water_mobs:deep_sandstone_slab"
+    }
+  },
+  "result": {
+    "item": "odd_water_mobs:chiseled_deep_sandstone",
+    "count": 1
+  }
+}

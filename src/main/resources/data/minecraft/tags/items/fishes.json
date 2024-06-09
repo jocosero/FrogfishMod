@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "odd_water_mobs:raw_anglerfish",
+    "odd_water_mobs:coelacanth",
+    "odd_water_mobs:raw_mudskipper",
+    "odd_water_mobs:cooked_mudskipper",
+    "odd_water_mobs:raw_ghost_shark",
+    "odd_water_mobs:deep_sea_fish",
+    "odd_water_mobs:frogfish"
+  ]
+}

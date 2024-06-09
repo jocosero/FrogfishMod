@@ -1,0 +1,33 @@
+{
+  "group": "odd_water_mobs",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "0  ",
+    "34 ",
+    "678"
+  ],
+  "key": {
+    "0": {
+      "item": "odd_water_mobs:smooth_deep_sandstone"
+    },
+    "3": {
+      "item": "odd_water_mobs:smooth_deep_sandstone"
+    },
+    "4": {
+      "item": "odd_water_mobs:smooth_deep_sandstone"
+    },
+    "6": {
+      "item": "odd_water_mobs:smooth_deep_sandstone"
+    },
+    "7": {
+      "item": "odd_water_mobs:smooth_deep_sandstone"
+    },
+    "8": {
+      "item": "odd_water_mobs:smooth_deep_sandstone"
+    }
+  },
+  "result": {
+    "item": "odd_water_mobs:smooth_deep_sandstone_stairs",
+    "count": 4
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "odd_water_mobs:item/giant_tube_worm"
+  }
+}

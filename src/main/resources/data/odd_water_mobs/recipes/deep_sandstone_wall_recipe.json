@@ -1,0 +1,32 @@
+{
+  "group": "odd_water_mobs",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012",
+    "345"
+  ],
+  "key": {
+    "0": {
+      "item": "odd_water_mobs:deep_sandstone"
+    },
+    "1": {
+      "item": "odd_water_mobs:deep_sandstone"
+    },
+    "2": {
+      "item": "odd_water_mobs:deep_sandstone"
+    },
+    "3": {
+      "item": "odd_water_mobs:deep_sandstone"
+    },
+    "4": {
+      "item": "odd_water_mobs:deep_sandstone"
+    },
+    "5": {
+      "item": "odd_water_mobs:deep_sandstone"
+    }
+  },
+  "result": {
+    "item": "odd_water_mobs:deep_sandstone_wall",
+    "count": 6
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "odd_water_mobs:block/bioblock"
+  }
+}

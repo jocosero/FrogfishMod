@@ -1,0 +1,10 @@
+{
+  "deep_ocean_music": {
+    "sounds": [
+      {
+        "name": "odd_water_mobs:deep_ocean_music",
+        "stream": true
+      }
+    ]
+  }
+}

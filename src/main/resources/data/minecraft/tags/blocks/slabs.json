@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "odd_water_mobs:deep_sandstone_slab",
+    "odd_water_mobs:cut_deep_sandstone_slab",
+    "odd_water_mobs:smooth_deep_sandstone_slab"
+  ]
+}

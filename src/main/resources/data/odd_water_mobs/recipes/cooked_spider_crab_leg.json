@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "odd_water_mobs:raw_spider_crab_leg"
+  },
+  "result": "odd_water_mobs:cooked_spider_crab_leg",
+  "experience": 0.35,
+  "cookingtime": 200
+}

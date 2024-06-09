@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "key": {
+    "#": {
+      "item": "odd_water_mobs:deep_sand"
+    }
+  },
+  "result": {
+    "item": "odd_water_mobs:deep_sandstone"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "odd_water_mobs:block/smooth_deep_sandstone_slab"
+    },
+    "type=top": {
+      "model": "odd_water_mobs:block/smooth_deep_sandstone_slab_top"
+    },
+    "type=double": {
+      "model": "odd_water_mobs:block/smooth_deep_sandstone_slab_full"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "group": "odd_water_mobs",
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "odd_water_mobs:deep_sandstone"
+  },
+  "result": "odd_water_mobs:cut_deep_sandstone"
+}

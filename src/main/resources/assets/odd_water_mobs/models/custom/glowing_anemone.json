@@ -1,0 +1,144 @@
+{
+  "credit": "made by @jocosero",
+  "texture_size": [64, 64],
+  "textures": {
+    "2": "odd_water_mobs:textures/block/glowing_anemone",
+    "particle": "odd_water_mobs:textures/block/glowing_anemone"
+  },
+  "elements": [
+    {
+      "from": [4.5, 0, 4.5],
+      "to": [11.5, 5, 11.5],
+      "shade": false,
+      "rotation": {"angle": 0, "axis": "y", "origin": [5.5, -6, 5.5]},
+      "faces": {
+        "north": {"uv": [9, 6.25, 7.25, 7.5], "texture": "#2"},
+        "east": {"uv": [10.75, 6.25, 9, 7.5], "texture": "#2"},
+        "south": {"uv": [12.5, 6.25, 10.75, 7.5], "texture": "#2"},
+        "west": {"uv": [7.25, 6.25, 5.5, 7.5], "texture": "#2"},
+        "up": {"uv": [7.25, 6.25, 9, 4.5], "texture": "#2"},
+        "down": {"uv": [9, 4.5, 10.75, 6.25], "texture": "#2"}
+      }
+    },
+    {
+      "from": [-0.5, 5, 2.5],
+      "to": [6.5, 5, 13.5],
+      "shade": false,
+      "rotation": {"angle": -22.5, "axis": "z", "origin": [5.5, 5, 8]},
+      "faces": {
+        "north": {"uv": [4.5, 2.75, 2.75, 2.75], "texture": "#2"},
+        "east": {"uv": [7.25, 2.75, 4.5, 2.75], "texture": "#2"},
+        "south": {"uv": [9, 2.75, 7.25, 2.75], "texture": "#2"},
+        "west": {"uv": [2.75, 2.75, 0, 2.75], "texture": "#2"},
+        "up": {"uv": [2.75, 2.75, 4.5, 0], "texture": "#2"},
+        "down": {"uv": [4.5, 0, 6.25, 2.75], "texture": "#2"}
+      }
+    },
+    {
+      "from": [9.5, 5, 2.5],
+      "to": [16.5, 5, 13.5],
+      "rotation": {"angle": 22.5, "axis": "z", "origin": [10.5, 5, 8]},
+      "faces": {
+        "north": {"uv": [2.75, 2.75, 4.5, 2.75], "texture": "#2"},
+        "east": {"uv": [0, 2.75, 2.75, 2.75], "texture": "#2"},
+        "south": {"uv": [7.25, 2.75, 9, 2.75], "texture": "#2"},
+        "west": {"uv": [4.5, 2.75, 7.25, 2.75], "texture": "#2"},
+        "up": {"uv": [4.5, 2.75, 2.75, 0], "texture": "#2"},
+        "down": {"uv": [6.25, 0, 4.5, 2.75], "texture": "#2"}
+      }
+    },
+    {
+      "from": [2.5, 5, 10.5],
+      "to": [13.5, 5, 17.5],
+      "shade": false,
+      "rotation": {"angle": -22.5, "axis": "x", "origin": [8, 5, 10.5]},
+      "faces": {
+        "north": {"uv": [4.5, 4.5, 1.75, 4.5], "texture": "#2"},
+        "east": {"uv": [6.25, 4.5, 4.5, 4.5], "texture": "#2"},
+        "south": {"uv": [9, 4.5, 6.25, 4.5], "texture": "#2"},
+        "west": {"uv": [1.75, 4.5, 0, 4.5], "texture": "#2"},
+        "up": {"uv": [1.75, 4.5, 4.5, 2.75], "texture": "#2"},
+        "down": {"uv": [4.5, 2.75, 7.25, 4.5], "texture": "#2"}
+      }
+    },
+    {
+      "from": [2.5, 5, -1.5],
+      "to": [13.5, 5, 5.5],
+      "shade": false,
+      "rotation": {"angle": 22.5, "axis": "x", "origin": [8, 5, 5.5]},
+      "faces": {
+        "north": {"uv": [4.5, 6.25, 1.75, 6.25], "texture": "#2"},
+        "east": {"uv": [6.25, 6.25, 4.5, 6.25], "texture": "#2"},
+        "south": {"uv": [9, 6.25, 6.25, 6.25], "texture": "#2"},
+        "west": {"uv": [1.75, 6.25, 0, 6.25], "texture": "#2"},
+        "up": {"uv": [1.75, 6.25, 4.5, 4.5], "texture": "#2"},
+        "down": {"uv": [4.5, 4.5, 7.25, 6.25], "texture": "#2"}
+      }
+    }
+  ],
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [75, 45, 0],
+      "translation": [0, 2.5, 0],
+      "scale": [0.375, 0.375, 0.375]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [75, 45, 0],
+      "translation": [0, 2.5, 0],
+      "scale": [0.375, 0.375, 0.375]
+    },
+    "firstperson_righthand": {
+      "rotation": [0, 45, 0],
+      "scale": [0.4, 0.4, 0.4]
+    },
+    "firstperson_lefthand": {
+      "rotation": [0, 225, 0],
+      "scale": [0.4, 0.4, 0.4]
+    },
+    "ground": {
+      "translation": [0, 3, 0],
+      "scale": [0.25, 0.25, 0.25]
+    },
+    "gui": {
+      "rotation": [30, 225, 0],
+      "scale": [0.625, 0.625, 0.625]
+    },
+    "fixed": {
+      "scale": [0.5, 0.5, 0.5]
+    }
+  },
+  "groups": [
+    0,
+    {
+      "name": "tentacles",
+      "origin": [0, 1, 0],
+      "color": 0,
+      "children": [
+        {
+          "name": "tentacles_w",
+          "origin": [-2.5, 5, 0],
+          "color": 0,
+          "children": [1]
+        },
+        {
+          "name": "tentacles_e",
+          "origin": [2.5, 5, 0],
+          "color": 0,
+          "children": [2]
+        },
+        {
+          "name": "tentacles_s",
+          "origin": [0, 5, 2.5],
+          "color": 0,
+          "children": [3]
+        },
+        {
+          "name": "tentacles_n",
+          "origin": [0, 5, -2.5],
+          "color": 0,
+          "children": [4]
+        }
+      ]
+    }
+  ]
+}

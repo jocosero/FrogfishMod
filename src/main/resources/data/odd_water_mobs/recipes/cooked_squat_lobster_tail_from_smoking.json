@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smoking",
+  "ingredient": {
+    "item": "odd_water_mobs:raw_squat_lobster_tail"
+  },
+  "result": "odd_water_mobs:cooked_squat_lobster_tail",
+  "experience": 0.35,
+  "cookingtime": 100
+}

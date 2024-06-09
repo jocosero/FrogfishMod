@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_wall_post",
+  "textures": {
+    "wall": "odd_water_mobs:block/deep_sandstone"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "ingredient": {
+    "item": "odd_water_mobs:raw_mudskipper"
+  },
+  "result": "odd_water_mobs:cooked_mudskipper",
+  "experience": 0.35,
+  "cookingtime": 600
+}

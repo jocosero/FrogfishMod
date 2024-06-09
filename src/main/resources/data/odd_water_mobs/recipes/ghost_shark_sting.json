@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "odd_water_mobs:raw_ghost_shark"
+    }
+  ],
+  "result": {
+    "item": "odd_water_mobs:ghost_shark_sting"
+  }
+}

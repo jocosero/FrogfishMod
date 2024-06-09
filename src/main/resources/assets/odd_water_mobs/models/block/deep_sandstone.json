@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "odd_water_mobs:block/deep_sandstone_bottom",
+    "up": "odd_water_mobs:block/deep_sandstone_top",
+    "north": "odd_water_mobs:block/deep_sandstone",
+    "east": "odd_water_mobs:block/deep_sandstone",
+    "south": "odd_water_mobs:block/deep_sandstone",
+    "west": "odd_water_mobs:block/deep_sandstone",
+    "particle": "odd_water_mobs:block/deep_sandstone_bottom"
+  }
+}

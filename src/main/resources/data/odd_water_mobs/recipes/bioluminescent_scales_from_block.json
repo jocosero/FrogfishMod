@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "odd_water_mobs:bioluminescent_block"
+    }
+  ],
+  "result": {
+    "item": "odd_water_mobs:bioluminescent_scales",
+    "count": 9
+  }
+}
