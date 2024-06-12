@@ -117,7 +117,7 @@ public class ChumBarrelBlock extends Block implements WorldlyContainerHolder {
     public static BlockState extractProduce(Entity pEntity, BlockState pState, Level pLevel, BlockPos pPos) {
         if (!pLevel.isClientSide) {
             Vec3 vec3 = Vec3.atLowerCornerWithOffset(pPos, 0.5D, 1.01D, 0.5D).offsetRandom(pLevel.random, 0.7F);
-            ItemEntity itementity = new ItemEntity(pLevel, vec3.x(), vec3.y(), vec3.z(), new ItemStack(ModItems.DEEP_SEA_FISH.get()));
+            ItemEntity itementity = new ItemEntity(pLevel, vec3.x(), vec3.y(), vec3.z(), new ItemStack(ModItems.FISH_BAIT.get()));
             itementity.setDefaultPickUpDelay();
             pLevel.addFreshEntity(itementity);
         }
@@ -221,7 +221,7 @@ public class ChumBarrelBlock extends Block implements WorldlyContainerHolder {
     public WorldlyContainer getContainer(BlockState pState, LevelAccessor pLevel, BlockPos pPos) {
         int i = pState.getValue(LEVEL);
         if (i == 8) {
-            return new ChumBarrelBlock.OutputContainer(pState, pLevel, pPos, new ItemStack(ModItems.DEEP_SEA_FISH.get()));
+            return new ChumBarrelBlock.OutputContainer(pState, pLevel, pPos, new ItemStack(ModItems.FISH_BAIT.get()));
         } else {
             return (WorldlyContainer) (i < 7 ? new ChumBarrelBlock.InputContainer(pState, pLevel, pPos) : new ChumBarrelBlock.EmptyContainer());
         }

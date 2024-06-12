@@ -163,6 +163,12 @@ public class ModBlocks {
                     .sound(SoundType.STONE)
                     .noOcclusion()));
 
+    public static final RegistryObject<Block> CHUM = registerBlock("chum",
+            () -> new ChumBlock(BlockBehaviour.Properties.copy(Blocks.NETHER_WART_BLOCK)
+                    .strength(0.3f)
+                    .sound(SoundType.WART_BLOCK)
+                    .mapColor(MapColor.COLOR_RED)));
+
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);

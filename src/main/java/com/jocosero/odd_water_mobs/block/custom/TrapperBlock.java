@@ -1,16 +1,12 @@
 package com.jocosero.odd_water_mobs.block.custom;
 
 import com.jocosero.odd_water_mobs.block.entity.TrapperBlockEntity;
-import com.jocosero.odd_water_mobs.item.ModItems;
-import com.jocosero.odd_water_mobs.item.custom.TrapperBlockItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.PathfinderMob;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
@@ -74,13 +70,21 @@ public class TrapperBlock extends BaseEntityBlock {
             CompoundTag entityData = new CompoundTag();
             entity.saveWithoutId(entityData);
 
-            level.setBlock(pos, state.setValue(POWERED, Boolean.TRUE), 3);
             BlockEntity blockEntity = level.getBlockEntity(pos);
             if (blockEntity instanceof TrapperBlockEntity) {
-                ((TrapperBlockEntity) blockEntity).trapEntity(entityData);
+                TrapperBlockEntity trapperBlockEntity = (TrapperBlockEntity) blockEntity;
+                if (!trapperBlockEntity.hasEntity()) {
+                    trapperBlockEntity.trapEntity(entityData);
+                    System.out.println("Entity trapped: " + entity.getName().getString());
+                    entity.remove(Entity.RemovalReason.DISCARDED);
+                } else {
+                    System.out.println("Trapper already contains an entity.");
+                }
+            } else {
+                System.out.println("BlockEntity is not an instance of TrapperBlockEntity.");
             }
-
-            entity.remove(Entity.RemovalReason.DISCARDED);
+        } else {
+            System.out.println("No entities found to trap.");
         }
     }
 
@@ -97,26 +101,22 @@ public class TrapperBlock extends BaseEntityBlock {
 
                 if (entity != null) {
                     level.addFreshEntity(entity);
+                    System.out.println("Entity released: " + entity.getName().getString());
+                } else {
+                    System.out.println("Entity could not be loaded from data.");
                 }
+            } else {
+                System.out.println("No entity data to release.");
             }
+        } else {
+            System.out.println("BlockEntity is not an instance of TrapperBlockEntity.");
         }
     }
 
+    @Override
     public RenderShape getRenderShape(BlockState state) {
         return RenderShape.MODEL;
     }
-
-//    public ItemStack getTrapperItem(TrapperBlockEntity blockEntity) {
-//        return new ItemStack(ModItems.TRAPPER_BLOCK.get(), 1);
-//    }
-//
-//    @Override
-//    public ItemStack getCloneItemStack(BlockGetter level, BlockPos pos, BlockState state) {
-//        if (level.getBlockEntity(pos) instanceof TrapperBlockEntity blockEntity) {
-//            return this.getTrapperItem(blockEntity);
-//        }
-//        return super.getCloneItemStack(level, pos, state);
-//    }
 
     @Nullable
     @Override

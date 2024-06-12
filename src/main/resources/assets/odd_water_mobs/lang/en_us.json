@@ -40,6 +40,8 @@
   "item.odd_water_mobs.cooked_squat_lobster_tail": "Cooked Squat Lobster Tail",
   "item.odd_water_mobs.sea_pig": "Sea Pig",
   "item.odd_water_mobs.angler_lure": "Angler Lure",
+  "item.odd_water_mobs.fish_bait": "Fish Bait",
+  "item.odd_water_mobs.chum_bucket": "Chum Bucket",
 
   "block.odd_water_mobs.deep_sand":"Deep Sand",
   "block.odd_water_mobs.deep_sandstone":"Deep Sandstone",
@@ -60,6 +62,7 @@
   "block.odd_water_mobs.hydrothermal_vent":"Hydrothermal Vent",
   "block.odd_water_mobs.chum_barrel": "Chum Barrel",
   "block.odd_water_mobs.trapper": "Trapper",
+  "block.odd_water_mobs.chum": "Chum",
 
   "effect.odd_water_mobs.sinking": "Sinking",
   "effect.odd_water_mobs.alluring": "Allure",

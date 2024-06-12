@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "odd_water_mobs:fish_bait"
+    },
+    {
+      "item": "odd_water_mobs:fish_bait"
+    },
+    {
+      "item": "odd_water_mobs:fish_bait"
+    },
+    {
+      "item": "odd_water_mobs:fish_bait"
+    },
+    {
+      "item": "odd_water_mobs:fish_bait"
+    },
+    {
+      "item": "odd_water_mobs:fish_bait"
+    },
+    {
+      "item": "minecraft:bucket"
+    }
+  ],
+  "result": {
+    "item": "odd_water_mobs:chum_bucket",
+    "count": 1
+  }
+}

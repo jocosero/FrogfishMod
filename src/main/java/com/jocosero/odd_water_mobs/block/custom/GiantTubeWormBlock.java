@@ -45,7 +45,7 @@ public class GiantTubeWormBlock extends Block implements SimpleWaterloggedBlock 
 
     public GiantTubeWormBlock(Properties properties) {
         super(properties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(IS_WORM_BASE, false).setValue(WATERLOGGED, false).setValue(IN_LAND, false));
+        this.registerDefaultState(this.stateDefinition.any().setValue(IS_WORM_BASE, false).setValue(WATERLOGGED, true).setValue(IN_LAND, false));
     }
 
     @Override

@@ -5,9 +5,9 @@ import com.jocosero.odd_water_mobs.block.ModBlocks;
 import com.jocosero.odd_water_mobs.entity.ModEntities;
 import com.jocosero.odd_water_mobs.item.custom.FrogfishBucketItem;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.MobBucketItem;
+import net.minecraft.world.item.SolidBucketItem;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -72,6 +72,11 @@ public class ModItems {
     public static final RegistryObject<Item> ANGLER_LURE = ITEMS.register("angler_lure",
             () -> new Item(new Item.Properties()));
 
+    public static final RegistryObject<Item> FISH_BAIT = ITEMS.register("fish_bait",
+            () -> new Item(new Item.Properties().food(ModFoods.FISH_BAIT)));
+
+    public static final RegistryObject<SolidBucketItem> CHUM_BUCKET = ITEMS.register("chum_bucket",
+            () -> new SolidBucketItem(ModBlocks.CHUM.get(), SoundEvents.WART_BLOCK_PLACE, (new Item.Properties()).stacksTo(1)));
 
     // Spawn Eggs
 

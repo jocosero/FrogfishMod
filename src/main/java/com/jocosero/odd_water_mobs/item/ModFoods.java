@@ -87,4 +87,10 @@ public class ModFoods {
             .effect(() -> new MobEffectInstance(MobEffects.POISON, 1200, 0), 0.8F)
             .meat()
             .build();
+
+    public static final FoodProperties FISH_BAIT = (new FoodProperties.Builder())
+            .nutrition(3)
+            .saturationMod(0.2F)
+            .effect(() -> new MobEffectInstance(MobEffects.HUNGER, 200, 0), 0.3F)
+            .build();
 }

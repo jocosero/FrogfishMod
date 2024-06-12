@@ -38,6 +38,8 @@ public class ModCreativeModeTab {
                         pOutput.accept(ModItems.SEA_PIG.get());
                         pOutput.accept(ModItems.FROGFISH.get());
                         pOutput.accept(ModItems.ANGLER_LURE.get());
+                        pOutput.accept(ModItems.FISH_BAIT.get());
+                        pOutput.accept(ModItems.CHUM_BUCKET.get());
 
                         //Buckets
                         pOutput.accept(ModItems.ANGLERFISH_BUCKET.get());
