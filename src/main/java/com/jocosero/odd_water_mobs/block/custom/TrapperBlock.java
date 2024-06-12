@@ -7,11 +7,9 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.BaseEntityBlock;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.RenderShape;
-import net.minecraft.world.level.block.Rotation;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -27,12 +25,12 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class TrapperBlock extends BaseEntityBlock {
-    public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
+    public static final DirectionProperty FACING = DirectionalBlock.FACING;
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 
     public TrapperBlock(Properties properties) {
         super(properties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.SOUTH).setValue(POWERED, Boolean.FALSE));
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(POWERED, Boolean.FALSE));
     }
 
     @Override
@@ -46,18 +44,45 @@ public class TrapperBlock extends BaseEntityBlock {
     }
 
     @Override
+    public BlockState mirror(BlockState pState, Mirror pMirror) {
+        return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));
+    }
+
+    @Override
     public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
         boolean isPowered = level.hasNeighborSignal(pos);
         boolean wasPowered = state.getValue(POWERED);
+        BlockEntity blockEntity = level.getBlockEntity(pos);
 
-        if (isPowered && !wasPowered) {
-            level.setBlock(pos, state.setValue(POWERED, Boolean.TRUE), 3);
-            trapEntity(level, pos, state);
-        } else if (!isPowered && wasPowered) {
-            level.setBlock(pos, state.setValue(POWERED, Boolean.FALSE), 3);
-            releaseEntity(level, pos, state);
+        if (blockEntity instanceof TrapperBlockEntity) {
+            TrapperBlockEntity trapperBlockEntity = (TrapperBlockEntity) blockEntity;
+
+            if (isPowered && !wasPowered && !trapperBlockEntity.isEntityTrapped()) {
+                level.setBlock(pos, state.setValue(POWERED, Boolean.TRUE), 3);
+                trapEntity(level, pos, state);
+            } else if (isPowered && !wasPowered && trapperBlockEntity.isEntityTrapped()) {
+                level.setBlock(pos, state.setValue(POWERED, Boolean.FALSE), 3);
+                releaseEntity(level, pos, state);
+            }
         }
     }
+
+    @Override
+    public int getSignal(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, Direction direction) {
+        return blockState.getValue(POWERED) ? 15 : 0;
+    }
+
+    @Override
+    public int getDirectSignal(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, Direction direction) {
+        return blockState.getValue(POWERED) ? 15 : 0;
+    }
+
+    @Override
+    public boolean isSignalSource(BlockState blockState) {
+        return true;
+    }
+
+
 
     private void trapEntity(Level level, BlockPos pos, BlockState state) {
         Direction direction = state.getValue(FACING);
@@ -68,7 +93,7 @@ public class TrapperBlock extends BaseEntityBlock {
         if (!entities.isEmpty()) {
             PathfinderMob entity = entities.get(0);
             CompoundTag entityData = new CompoundTag();
-            entity.saveWithoutId(entityData);
+            entity.save(entityData);
 
             BlockEntity blockEntity = level.getBlockEntity(pos);
             if (blockEntity instanceof TrapperBlockEntity) {
@@ -133,4 +158,6 @@ public class TrapperBlock extends BaseEntityBlock {
             }
         };
     }
+
+
 }

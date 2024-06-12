@@ -4,12 +4,12 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
 public class TrapperBlockEntity extends BlockEntity {
     private CompoundTag trappedEntityData;
+    private boolean isEntityTrapped = false;
 
     public TrapperBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.TRAPPER_BLOCK_ENTITY.get(), pos, state);
@@ -17,6 +17,7 @@ public class TrapperBlockEntity extends BlockEntity {
 
     public void trapEntity(CompoundTag entityData) {
         this.trappedEntityData = entityData;
+        this.isEntityTrapped = true;
         this.setChanged();
     }
 
@@ -25,6 +26,7 @@ public class TrapperBlockEntity extends BlockEntity {
         if (this.trappedEntityData != null) {
             CompoundTag entityData = this.trappedEntityData;
             this.trappedEntityData = null;
+            this.isEntityTrapped = false;
             this.setChanged();
             return entityData;
         }
@@ -33,6 +35,10 @@ public class TrapperBlockEntity extends BlockEntity {
 
     public boolean hasEntity() {
         return this.trappedEntityData != null;
+    }
+
+    public boolean isEntityTrapped() {
+        return this.isEntityTrapped;
     }
 
     @Override
@@ -52,6 +58,6 @@ public class TrapperBlockEntity extends BlockEntity {
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, TrapperBlockEntity blockEntity) {
-        // Custom tick logic if needed
+        // Custom tick logic if ever needed
     }
 }
