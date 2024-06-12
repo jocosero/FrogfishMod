@@ -25,7 +25,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 import java.util.stream.Stream;
 
-public class GiantTubeWorm extends Block implements SimpleWaterloggedBlock {
+public class GiantTubeWormBlock extends Block implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final BooleanProperty IS_WORM_BASE = BooleanProperty.create("is_worm_base");
     public static final BooleanProperty IN_LAND = BooleanProperty.create("in_land");
@@ -43,7 +43,7 @@ public class GiantTubeWorm extends Block implements SimpleWaterloggedBlock {
             Block.box(7, 0.0019999999999988916, 8, 11, 16.002, 12)
     ).reduce((v1, v2) -> Shapes.join(v1, v2, BooleanOp.OR)).get();
 
-    public GiantTubeWorm(Properties properties) {
+    public GiantTubeWormBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(IS_WORM_BASE, false).setValue(WATERLOGGED, false).setValue(IN_LAND, false));
     }

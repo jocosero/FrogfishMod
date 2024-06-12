@@ -1,8 +1,11 @@
 package com.jocosero.odd_water_mobs;
 
 import com.jocosero.odd_water_mobs.block.ModBlocks;
+import com.jocosero.odd_water_mobs.block.custom.ChumBarrelBlock;
+import com.jocosero.odd_water_mobs.block.entity.ModBlockEntities;
 import com.jocosero.odd_water_mobs.effect.ModEffects;
 import com.jocosero.odd_water_mobs.entity.ModEntities;
+import com.jocosero.odd_water_mobs.entity.client.renderer.AnglerfishRenderer;
 import com.jocosero.odd_water_mobs.entity.client.renderer.FrogfishRenderer;
 import com.jocosero.odd_water_mobs.entity.client.renderer.HorseshoeCrabRenderer;
 import com.jocosero.odd_water_mobs.entity.client.renderer.IsopodRenderer;
@@ -54,6 +57,8 @@ public class OddWaterMobs {
         ModEffects.register(modEventBus);
         ModPotions.register(modEventBus);
 
+        ModBlockEntities.register(modEventBus);
+
         ModTerrablender.registerBiomes();
 
         modEventBus.addListener(this::commonSetup);
@@ -64,6 +69,8 @@ public class OddWaterMobs {
     private void commonSetup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, MOD_ID, ModSurfaceRules.makeRules());
+            //Items that serve as chum ingredients
+            ChumBarrelBlock.chumIngredients();
             //Potion brewing recipes
             BrewingRecipeRegistry.addRecipe(new PotionBrewingRecipe(Potions.AWKWARD, ModItems.FROGFISH.get(), ModPotions.ALLURING_POTION.get()));
             BrewingRecipeRegistry.addRecipe(new PotionBrewingRecipe(Potions.AWKWARD, ModItems.RAW_ANGLERFISH.get(), ModPotions.ALLURING_POTION.get()));
@@ -86,8 +93,10 @@ public class OddWaterMobs {
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
+            EntityRenderers.register(ModEntities.ANGLERFISH.get(), AnglerfishRenderer::new);
             EntityRenderers.register(ModEntities.ISOPOD.get(), IsopodRenderer::new);
             EntityRenderers.register(ModEntities.HORSESHOE_CRAB.get(), HorseshoeCrabRenderer::new);
+//            EntityRenderers.register(ModEntities.COELACANTH.get(), CoelacanthRenderer::new);
             EntityRenderers.register(ModEntities.FROGFISH.get(), FrogfishRenderer::new);
         }
     }

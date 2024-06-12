@@ -27,14 +27,14 @@ import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class GlowingAnemone extends Block implements SimpleWaterloggedBlock {
+public class GlowingAnemoneBlock extends Block implements SimpleWaterloggedBlock {
 
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final DirectionProperty FACING = DirectionalBlock.FACING;
     private static final VoxelShape SHAPE = Block.box(4.5, 0, 4.5, 11.5, 5, 11.5);
 
 
-    public GlowingAnemone(Properties properties) {
+    public GlowingAnemoneBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, false).setValue(FACING, Direction.NORTH));
     }

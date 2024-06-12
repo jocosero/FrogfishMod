@@ -18,12 +18,12 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class BioluminescentScales extends Block implements SimpleWaterloggedBlock {
+public class BioluminescentScalesBlock extends Block implements SimpleWaterloggedBlock {
 
     public static final DirectionProperty FACING = DirectionalBlock.FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    public BioluminescentScales(Properties properties) {
+    public BioluminescentScalesBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, false));
     }

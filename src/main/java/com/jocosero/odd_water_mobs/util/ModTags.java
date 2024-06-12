@@ -10,6 +10,9 @@ import net.minecraft.world.level.block.Block;
 
 public class ModTags {
         public static class Blocks {
+
+
+
             public static final TagKey<Block> HYDROTHERMAL_VALID = tag("hydrothermal_valid");
 
             public static TagKey<Block> tag(String name) {
@@ -23,6 +26,12 @@ public class ModTags {
         }
 
         public static class Items {
+
+            public static final TagKey<Item> CHUM_INGREDIENTS_ONE_LAYER = forgeTag("chum_ingredients_one_layer");
+            public static final TagKey<Item> CHUM_INGREDIENTS_TWO_LAYERS = forgeTag("chum_ingredients_two_layers");
+            public static final TagKey<Item> CHUM_INGREDIENTS_HALF_LAYERS = forgeTag("chum_ingredients_half_layers");
+            public static final TagKey<Item> CHUM_INGREDIENTS_FULL_LAYERS = forgeTag("chum_ingredients_full_layers");
+
 
             public static TagKey<Item> tag(String name) {
                 return ItemTags.create(new ResourceLocation(OddWaterMobs.MOD_ID, name));

@@ -1,0 +1,73 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "odd_water_mobs:block/chum_barrel"
+      }
+    },
+    {
+      "apply": {
+        "model": "odd_water_mobs:block/chum_barrel_contents1"
+      },
+      "when": {
+        "level": "1"
+      }
+    },
+    {
+      "apply": {
+        "model": "odd_water_mobs:block/chum_barrel_contents2"
+      },
+      "when": {
+        "level": "2"
+      }
+    },
+    {
+      "apply": {
+        "model": "odd_water_mobs:block/chum_barrel_contents3"
+      },
+      "when": {
+        "level": "3"
+      }
+    },
+    {
+      "apply": {
+        "model": "odd_water_mobs:block/chum_barrel_contents4"
+      },
+      "when": {
+        "level": "4"
+      }
+    },
+    {
+      "apply": {
+        "model": "odd_water_mobs:block/chum_barrel_contents5"
+      },
+      "when": {
+        "level": "5"
+      }
+    },
+    {
+      "apply": {
+        "model": "odd_water_mobs:block/chum_barrel_contents6"
+      },
+      "when": {
+        "level": "6"
+      }
+    },
+    {
+      "apply": {
+        "model": "odd_water_mobs:block/chum_barrel_contents7"
+      },
+      "when": {
+        "level": "7"
+      }
+    },
+    {
+      "apply": {
+        "model": "odd_water_mobs:block/chum_barrel_contents_ready"
+      },
+      "when": {
+        "level": "8"
+      }
+    }
+  ]
+}

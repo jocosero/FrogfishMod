@@ -1,10 +1,7 @@
 package com.jocosero.odd_water_mobs.block;
 
 import com.jocosero.odd_water_mobs.OddWaterMobs;
-import com.jocosero.odd_water_mobs.block.custom.DeepSand;
-import com.jocosero.odd_water_mobs.block.custom.GiantTubeWorm;
-import com.jocosero.odd_water_mobs.block.custom.GlowingAnemone;
-import com.jocosero.odd_water_mobs.block.custom.HydrothermalVent;
+import com.jocosero.odd_water_mobs.block.custom.*;
 import com.jocosero.odd_water_mobs.item.ModItems;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -23,7 +20,7 @@ public class ModBlocks {
             DeferredRegister.create(ForgeRegistries.BLOCKS, OddWaterMobs.MOD_ID);
 
     public static final RegistryObject<Block> DEEP_SAND = registerBlock("deep_sand",
-            () -> new DeepSand(BlockBehaviour.Properties.copy(Blocks.SAND)
+            () -> new DeepSandBlock(BlockBehaviour.Properties.copy(Blocks.SAND)
                     .strength(0.6f)
                     .sound(SoundType.SAND)
                     .mapColor(MapColor.SAND)));
@@ -126,7 +123,7 @@ public class ModBlocks {
 
 
     public static final RegistryObject<Block> GIANT_TUBE_WORM = registerBlock("giant_tube_worm",
-            () -> new GiantTubeWorm(BlockBehaviour.Properties.copy(Blocks.TUBE_CORAL)
+            () -> new GiantTubeWormBlock(BlockBehaviour.Properties.copy(Blocks.TUBE_CORAL)
                     .strength(1.5F, 6.0F)
                     .forceSolidOn()
                     .sound(SoundType.CORAL_BLOCK)
@@ -134,7 +131,7 @@ public class ModBlocks {
                     .requiresCorrectToolForDrops()));
 
     public static final RegistryObject<Block> GLOWING_ANEMONE = registerBlock("glowing_anemone",
-            () -> new GlowingAnemone(BlockBehaviour.Properties.copy(Blocks.TUBE_CORAL)
+            () -> new GlowingAnemoneBlock(BlockBehaviour.Properties.copy(Blocks.TUBE_CORAL)
                     .lightLevel((state) -> {
                         return 2;
                     })
@@ -145,11 +142,21 @@ public class ModBlocks {
                     .emissiveRendering((bs, br, bp) -> true)));
 
     public static final RegistryObject<Block> HYDROTHERMAL_VENT = registerBlock("hydrothermal_vent",
-            () -> new HydrothermalVent(true, 5, BlockBehaviour.Properties.copy(Blocks.STONE)
+            () -> new HydrothermalVentBlock(true, 5, BlockBehaviour.Properties.copy(Blocks.STONE)
                     .strength(1.3f)
                     .sound(SoundType.BASALT)
                     .mapColor(MapColor.TERRACOTTA_GREEN)
                     .requiresCorrectToolForDrops()));
+
+    public static final RegistryObject<Block> CHUM_BARREL = registerBlock("chum_barrel",
+            () -> new ChumBarrelBlock(BlockBehaviour.Properties.of()
+                    .strength(0.6f)
+                    .sound(SoundType.WOOD)
+                    .mapColor(MapColor.TERRACOTTA_ORANGE)));
+
+    public static final RegistryObject<Block> TRAPPER = registerBlock("trapper",
+            () -> new TrapperBlock(BlockBehaviour.Properties.copy(Blocks.PISTON)
+                    .noOcclusion()));
 
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {

@@ -4,9 +4,9 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 public enum FrogfishVariant {
-    ORANGE(0),
-    YELLOW(1),
-    WHITE(2);
+    WHITE(0),
+    ORANGE(1),
+    YELLOW(2);
 
     private static final FrogfishVariant[] BY_ID = Arrays.stream(values()).sorted(Comparator.
             comparingInt(FrogfishVariant::getId)).toArray(FrogfishVariant[]::new);

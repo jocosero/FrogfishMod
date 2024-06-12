@@ -9,6 +9,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -22,7 +23,10 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
@@ -44,10 +48,10 @@ public class FrogfishEntity extends AbstractWaterMob {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
-        return AbstractWaterMob.createLivingAttributes()
+        return FrogfishEntity.createLivingAttributes()
                 .add(Attributes.MAX_HEALTH, 6.0D)
                 .add(Attributes.FOLLOW_RANGE, 2.0D)
-                .add(Attributes.MOVEMENT_SPEED, 0.2D);
+                .add(Attributes.MOVEMENT_SPEED, 0.15D);
     }
 
     @Override
@@ -59,7 +63,7 @@ public class FrogfishEntity extends AbstractWaterMob {
         this.goalSelector.addGoal(5, new LookAtPlayerGoal(this, Player.class, 2.0F));
     }
 
-    public void tick() {
+    public void aiStep() {
         this.lastTickPosX = this.getX();
         this.lastTickPosY = this.getY();
         this.lastTickPosZ = this.getZ();
@@ -69,7 +73,18 @@ public class FrogfishEntity extends AbstractWaterMob {
         if (this.level().isClientSide) {
             setupAnimationStates();
         }
-        super.tick();
+        super.aiStep();
+    }
+
+    @OnlyIn(Dist.CLIENT)
+    @Override
+    public SpawnGroupData finalizeSpawn(ServerLevelAccessor pLevel, DifficultyInstance pDifficulty, MobSpawnType pSpawnReason, @Nullable SpawnGroupData pSpawnData, @Nullable CompoundTag pAdditionalData) {
+        if (this.fromBucket() && pAdditionalData != null && pAdditionalData.contains("BucketVariantTag")) {
+            this.setVariant(pAdditionalData.getInt("BucketVariantTag"));
+        } else {
+            this.setVariant(this.random.nextInt(3));
+        }
+        return pSpawnData;
     }
 
     private void setupAnimationStates() {
@@ -119,15 +134,15 @@ public class FrogfishEntity extends AbstractWaterMob {
     @Override
     public void readAdditionalSaveData(@NotNull CompoundTag tag) {
         super.readAdditionalSaveData(tag);
-        if (tag.contains("Variant")) {
-            this.setVariant(tag.getInt("Variant"));
+        if (tag.contains("BucketVariantTag")) {
+            this.setVariant(tag.getInt("BucketVariantTag"));
         }
     }
 
     @Override
     public void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
-        tag.putInt("Variant", this.getTypeVariant());
+        tag.putInt("BucketVariantTag", this.getTypeVariant());
     }
 
     @Override
@@ -142,6 +157,23 @@ public class FrogfishEntity extends AbstractWaterMob {
 
     private void setVariant(int variant) {
         this.entityData.set(DATA_ID_TYPE_VARIANT, variant);
+    }
+
+    @Override
+    public void saveToBucketTag(ItemStack itemStack) {
+        CompoundTag nbt = itemStack.getOrCreateTag();
+        if (!nbt.contains("BucketVariantTag")) {
+            super.saveToBucketTag(itemStack);
+            nbt.putInt("BucketVariantTag", this.getTypeVariant());
+        }
+    }
+
+    @Override
+    public void loadFromBucketTag(CompoundTag compound) {
+        super.loadFromBucketTag(compound);
+        if (compound.contains("BucketVariantTag")) {
+            this.setVariant(compound.getInt("BucketVariantTag"));
+        }
     }
 
     @Override

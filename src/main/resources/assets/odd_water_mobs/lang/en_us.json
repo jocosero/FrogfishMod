@@ -16,7 +16,6 @@
   "tooltip.odd_water_mobs.orange_frogfish": "Orange",
   "tooltip.odd_water_mobs.yellow_frogfish": "Yellow",
 
-
   "item.odd_water_mobs.anglerfish_spawn_egg": "Anglerfish Spawn Egg",
   "item.odd_water_mobs.isopod_spawn_egg": "Isopod Spawn Egg",
   "item.odd_water_mobs.horseshoe_crab_spawn_egg": "Horseshoe Crab Spawn Egg",
@@ -40,6 +39,7 @@
   "item.odd_water_mobs.raw_squat_lobster_tail": "Raw Squat Lobster Tail",
   "item.odd_water_mobs.cooked_squat_lobster_tail": "Cooked Squat Lobster Tail",
   "item.odd_water_mobs.sea_pig": "Sea Pig",
+  "item.odd_water_mobs.angler_lure": "Angler Lure",
 
   "block.odd_water_mobs.deep_sand":"Deep Sand",
   "block.odd_water_mobs.deep_sandstone":"Deep Sandstone",
@@ -58,6 +58,8 @@
   "block.odd_water_mobs.bioluminescent_block":"Bioluminescent Block",
   "block.odd_water_mobs.glowing_anemone":"Glowing Anemone",
   "block.odd_water_mobs.hydrothermal_vent":"Hydrothermal Vent",
+  "block.odd_water_mobs.chum_barrel": "Chum Barrel",
+  "block.odd_water_mobs.trapper": "Trapper",
 
   "effect.odd_water_mobs.sinking": "Sinking",
   "effect.odd_water_mobs.alluring": "Allure",

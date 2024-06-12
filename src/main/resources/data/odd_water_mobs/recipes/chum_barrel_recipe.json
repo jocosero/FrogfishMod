@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "tag": "minecraft:fishes"
+        },
+        {
+            "item": "minecraft:bucket"
+        },
+        {
+            "item": "minecraft:barrel"
+        }
+    ],
+    "result": {
+        "item": "odd_water_mobs:chum_barrel",
+        "count": 1
+    }
+}

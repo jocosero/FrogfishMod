@@ -11,6 +11,8 @@ import net.minecraft.world.item.MobBucketItem;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.Fluids;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import java.util.List;
 import java.util.Locale;
@@ -21,11 +23,12 @@ public class FrogfishBucketItem extends MobBucketItem {
     }
 
     @Override
+    @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         CompoundTag compoundnbt = stack.getTag();
-        if (compoundnbt != null && compoundnbt.contains("Variant", 3)) {
-            FrogfishVariant type = FrogfishVariant.byId(compoundnbt.getInt("Variant"));
-            tooltip.add((Component.translatable(String.format("tooltip.odd_water_mobs.%s_frogfish", type.name().toLowerCase(Locale.ROOT))).withStyle(ChatFormatting.ITALIC)));
+        if (compoundnbt != null && compoundnbt.contains("BucketVariantTag", 3)) {
+            FrogfishVariant type = FrogfishVariant.byId(compoundnbt.getInt("BucketVariantTag"));
+            tooltip.add((Component.translatable(String.format("tooltip.odd_water_mobs.%s_frogfish", type.name().toLowerCase(Locale.ROOT))).withStyle(ChatFormatting.ITALIC, ChatFormatting.GRAY)));
         }
     }
 }

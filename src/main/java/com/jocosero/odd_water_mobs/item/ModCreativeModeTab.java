@@ -37,15 +37,20 @@ public class ModCreativeModeTab {
                         pOutput.accept(ModItems.COOKED_SQUAT_LOBSTER_TAIL.get());
                         pOutput.accept(ModItems.SEA_PIG.get());
                         pOutput.accept(ModItems.FROGFISH.get());
+                        pOutput.accept(ModItems.ANGLER_LURE.get());
 
                         //Buckets
+                        pOutput.accept(ModItems.ANGLERFISH_BUCKET.get());
                         pOutput.accept(ModItems.ISOPOD_BUCKET.get());
                         pOutput.accept(ModItems.HORSESHOE_CRAB_BUCKET.get());
+//                        pOutput.accept(ModItems.COELACANTH_BUCKET.get());
                         pOutput.accept(ModItems.FROGFISH_BUCKET.get());;
 
                         //Spawn eggs
+                        pOutput.accept(ModItems.ANGLERFISH_SPAWN_EGG.get());
                         pOutput.accept(ModItems.ISOPOD_SPAWN_EGG.get());
                         pOutput.accept(ModItems.HORSESHOE_CRAB_SPAWN_EGG.get());
+//                        pOutput.accept(ModItems.COELACANTH_SPAWN_EGG.get());
                         pOutput.accept(ModItems.FROGFISH_SPAWN_EGG.get());
 
                         //Deep sand variants
@@ -66,6 +71,8 @@ public class ModCreativeModeTab {
                         pOutput.accept(ModBlocks.GIANT_TUBE_WORM.get());
                         pOutput.accept(ModBlocks.GLOWING_ANEMONE.get());
                         pOutput.accept(ModBlocks.HYDROTHERMAL_VENT.get());
+                        pOutput.accept(ModBlocks.CHUM_BARREL.get());
+                        pOutput.accept(ModBlocks.TRAPPER.get());
 
                         //Potions
 

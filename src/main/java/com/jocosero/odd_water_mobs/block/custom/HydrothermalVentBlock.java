@@ -15,10 +15,10 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class HydrothermalVent extends Block {
+public class HydrothermalVentBlock extends Block {
     private final int hotfloorDamage;
 
-    public HydrothermalVent(boolean pSpawnParticles, int pHotFloor, Properties properties) {
+    public HydrothermalVentBlock(boolean pSpawnParticles, int pHotFloor, Properties properties) {
         super(properties);
         this.hotfloorDamage = pHotFloor;
     }
@@ -50,7 +50,7 @@ public class HydrothermalVent extends Block {
                     for (int j = 1; j < i; j++) {
                         BlockPos ventPos = new BlockPos(pPos.getX(), pPos.getY() - j, pPos.getZ());
                         Block ventBlock = pLevel.getBlockState(ventPos).getBlock();
-                        if (!(ventBlock instanceof HydrothermalVent)) {
+                        if (!(ventBlock instanceof HydrothermalVentBlock)) {
                             allVents = false;
                             break;
                         }

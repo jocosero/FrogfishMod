@@ -1,0 +1,31 @@
+{
+  "replace": false,
+  "values": [
+    "minecraft:brown_mushroom",
+    "minecraft:red_mushroom",
+    "minecraft:crimson_fungus",
+    "minecraft:warped_fungus",
+    "minecraft:rotten_flesh",
+    "minecraft:scute",
+    "minecraft:spider_eye",
+    "minecraft:sugar",
+    "minecraft:sugar_cane",
+    "minecraft:bread",
+    "minecraft:carrot",
+    "minecraft:beetroot",
+    "minecraft:potato",
+    "minecraft:apple",
+    "minecraft:baked_potato",
+    "minecraft:sweet_berries",
+    "minecraft:glow_berries",
+    "minecraft:bread",
+    "minecraft:cookie",
+    "minecraft:chorus_fruit",
+    "minecraft:sea_pickle",
+    "minecraft:kelp",
+    "minecraft:dried_kelp",
+    "odd_water_mobs:horseshoe_crab_thorax",
+    "odd_water_mobs:ghost_shark_sting",
+    "odd_water_mobs:mudskipper_fin"
+  ]
+}

@@ -16,9 +16,6 @@ import net.minecraftforge.registries.RegistryObject;
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, OddWaterMobs.MOD_ID);
 
-    public static final RegistryObject<Item> FROGFISH = ITEMS.register("frogfish",
-            () -> new Item(new Item.Properties().food(ModFoods.FROGFISH)));
-
     public static final RegistryObject<Item> RAW_ANGLERFISH = ITEMS.register("raw_anglerfish",
             () -> new Item(new Item.Properties().food(ModFoods.RAW_ANGLERFISH)));
 
@@ -67,10 +64,16 @@ public class ModItems {
     public static final RegistryObject<Item> SEA_PIG = ITEMS.register("sea_pig",
             () -> new Item(new Item.Properties().food(ModFoods.SEA_PIG)));
 
+    public static final RegistryObject<Item> FROGFISH = ITEMS.register("frogfish",
+            () -> new Item(new Item.Properties().food(ModFoods.FROGFISH)));
+
+    public static final RegistryObject<Item> ANGLER_LURE = ITEMS.register("angler_lure",
+            () -> new Item(new Item.Properties()));
+
     // Spawn Eggs
 
-    public static final RegistryObject<Item> FROGFISH_SPAWN_EGG = ITEMS.register("frogfish_spawn_egg",
-            () -> new ForgeSpawnEggItem(ModEntities.FROGFISH, 0xF4EFED, 0xFC5E47, new Item.Properties()));
+    public static final RegistryObject<Item> ANGLERFISH_SPAWN_EGG = ITEMS.register("anglerfish_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.ANGLERFISH, -11781057, -14082015, (new Item.Properties().stacksTo(1))));
 
     public static final RegistryObject<Item> ISOPOD_SPAWN_EGG = ITEMS.register("isopod_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.ISOPOD, 0xEDDCC2, 0xA8938C, (new Item.Properties().stacksTo(1))));
@@ -78,16 +81,28 @@ public class ModItems {
     public static final RegistryObject<Item> HORSESHOE_CRAB_SPAWN_EGG = ITEMS.register("horseshoe_crab_spawn_egg",
             () -> new ForgeSpawnEggItem(ModEntities.HORSESHOE_CRAB, 0x6A5740, 0x2B2817, (new Item.Properties().stacksTo(1))));
 
+//    public static final RegistryObject<Item> COELACANTH_SPAWN_EGG = ITEMS.register("coelacanth_spawn_egg",
+//            () -> new ForgeSpawnEggItem(ModEntities.COELACANTH, -15461851, -13618085, (new Item.Properties().stacksTo(1))));
+
+    public static final RegistryObject<Item> FROGFISH_SPAWN_EGG = ITEMS.register("frogfish_spawn_egg",
+            () -> new ForgeSpawnEggItem(ModEntities.FROGFISH, 0xF4EFED, 0xFC5E47, new Item.Properties()));
+
     // Bucket Items
 
-    public static final RegistryObject<Item> FROGFISH_BUCKET = ITEMS.register("frogfish_bucket",
-            () -> new FrogfishBucketItem(new Item.Properties().stacksTo(1)));
+    public static final RegistryObject<Item> ANGLERFISH_BUCKET = ITEMS.register("anglerfish_bucket",
+            () -> new MobBucketItem(ModEntities.ANGLERFISH, () -> Fluids.WATER, () -> SoundEvents.BUCKET_EMPTY_FISH, (new Item.Properties().stacksTo(1))));
 
     public static final RegistryObject<Item> ISOPOD_BUCKET = ITEMS.register("isopod_bucket",
             () -> new MobBucketItem(ModEntities.ISOPOD, () -> Fluids.WATER, () -> SoundEvents.BUCKET_EMPTY_FISH, (new Item.Properties().stacksTo(1))));
 
     public static final RegistryObject<Item> HORSESHOE_CRAB_BUCKET = ITEMS.register("horseshoe_crab_bucket",
             () -> new MobBucketItem(ModEntities.HORSESHOE_CRAB, () -> Fluids.WATER, () -> SoundEvents.BUCKET_EMPTY_FISH, (new Item.Properties().stacksTo(1))));
+
+//    public static final RegistryObject<Item> COELACANTH_BUCKET = ITEMS.register("coelacanth_bucket",
+//            () -> new MobBucketItem(ModEntities.COELACANTH, () -> Fluids.WATER, () -> SoundEvents.BUCKET_EMPTY_FISH, (new Item.Properties().stacksTo(1)));
+
+    public static final RegistryObject<Item> FROGFISH_BUCKET = ITEMS.register("frogfish_bucket",
+            () -> new FrogfishBucketItem(new Item.Properties().stacksTo(1)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
