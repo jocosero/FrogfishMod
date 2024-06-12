@@ -41,6 +41,4 @@ public class ModEventBusClientEvents {
     public static void registerBER(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(ModBlockEntities.TRAPPER_BLOCK_ENTITY.get(), TrapperBlockEntityRenderer::new);
     }
-
-
 }

@@ -1,4 +1,5 @@
 {
+  "replace": false,
   "values": [
     "odd_water_mobs:chiseled_deep_sandstone",
     "odd_water_mobs:cut_deep_sandstone",
@@ -11,6 +12,7 @@
     "odd_water_mobs:smooth_deep_sandstone_stairs",
     "odd_water_mobs:smooth_deep_sandstone_slab",
     "odd_water_mobs:giant_tube_worm",
-    "odd_water_mobs:hydrothermal_vent"
+    "odd_water_mobs:hydrothermal_vent",
+    "odd_water_mobs:trapper"
   ]
 }

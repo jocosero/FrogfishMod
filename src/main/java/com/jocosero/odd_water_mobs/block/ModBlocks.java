@@ -7,6 +7,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -155,7 +156,11 @@ public class ModBlocks {
                     .mapColor(MapColor.TERRACOTTA_ORANGE)));
 
     public static final RegistryObject<Block> TRAPPER = registerBlock("trapper",
-            () -> new TrapperBlock(BlockBehaviour.Properties.copy(Blocks.PISTON)
+            () -> new TrapperBlock(BlockBehaviour.Properties.of()
+                    .mapColor(MapColor.WOOD)
+                    .instrument(NoteBlockInstrument.BASEDRUM)
+                    .strength(5.0F)
+                    .sound(SoundType.STONE)
                     .noOcclusion()));
 
 

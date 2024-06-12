@@ -1,9 +1,11 @@
 package com.jocosero.odd_water_mobs.item;
 
 import com.jocosero.odd_water_mobs.OddWaterMobs;
+import com.jocosero.odd_water_mobs.block.ModBlocks;
 import com.jocosero.odd_water_mobs.entity.ModEntities;
 import com.jocosero.odd_water_mobs.item.custom.FrogfishBucketItem;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.MobBucketItem;
 import net.minecraft.world.level.material.Fluids;
@@ -69,6 +71,7 @@ public class ModItems {
 
     public static final RegistryObject<Item> ANGLER_LURE = ITEMS.register("angler_lure",
             () -> new Item(new Item.Properties()));
+
 
     // Spawn Eggs
 

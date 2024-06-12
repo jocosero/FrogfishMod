@@ -19,7 +19,7 @@ public class TrapperBlockEntity extends BlockEntity {
         super(ModBlockEntities.TRAPPER_BLOCK_ENTITY.get(), pos, state);
     }
 
-    public static void tick(Level pLevel, BlockPos pPos, BlockState pState) {
+    public static void tick(Level level, BlockPos pos, BlockState state, TrapperBlockEntity blockEntity) {
     }
 
     @Override
@@ -38,20 +38,18 @@ public class TrapperBlockEntity extends BlockEntity {
         }
     }
 
-    public void trapEntity(PathfinderMob entity) {
-        trappedEntityData = new CompoundTag();
-        entity.saveWithoutId(trappedEntityData);
-        entity.remove(Entity.RemovalReason.DISCARDED);
+    public void trapEntity(CompoundTag entityData) {
+        this.trappedEntityData = entityData;
+        this.setChanged();
     }
 
     @Nullable
-    public PathfinderMob releaseEntity() {
-        if (trappedEntityData != null) {
-            Entity entity = EntityType.loadEntityRecursive(trappedEntityData, this.level, (e) -> e);
-            if (entity instanceof PathfinderMob) {
-                trappedEntityData = null;
-                return (PathfinderMob) entity;
-            }
+    public CompoundTag releaseEntity() {
+        if (this.trappedEntityData != null) {
+            CompoundTag entityData = this.trappedEntityData;
+            this.trappedEntityData = null;
+            this.setChanged();
+            return entityData;
         }
         return null;
     }

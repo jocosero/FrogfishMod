@@ -1,7 +1,36 @@
 {
   "variants": {
-    "": {
-      "model": "odd_water_mobs:block/trapper"
+    "facing=north,powered=false": {
+      "model": "odd_water_mobs:block/trapper",
+      "y": 0
+    },
+    "facing=south,powered=false": {
+      "model": "odd_water_mobs:block/trapper",
+      "y": 180
+    },
+    "facing=west,powered=false": {
+      "model": "odd_water_mobs:block/trapper",
+      "y": 270
+    },
+    "facing=east,powered=false": {
+      "model": "odd_water_mobs:block/trapper",
+      "y": 90
+    },
+    "facing=north,powered=true": {
+      "model": "odd_water_mobs:block/trapper_powered",
+      "y": 0
+    },
+    "facing=south,powered=true": {
+      "model": "odd_water_mobs:block/trapper_powered",
+      "y": 180
+    },
+    "facing=west,powered=true": {
+      "model": "odd_water_mobs:block/trapper_powered",
+      "y": 270
+    },
+    "facing=east,powered=true": {
+      "model": "odd_water_mobs:block/trapper_powered",
+      "y": 90
     }
   }
 }

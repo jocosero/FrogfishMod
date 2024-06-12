@@ -1,15 +1,20 @@
 package com.jocosero.odd_water_mobs.block.custom;
 
 import com.jocosero.odd_water_mobs.block.entity.TrapperBlockEntity;
+import com.jocosero.odd_water_mobs.item.ModItems;
+import com.jocosero.odd_water_mobs.item.custom.TrapperBlockItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.BaseEntityBlock;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RenderShape;
 import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
@@ -31,7 +36,7 @@ public class TrapperBlock extends BaseEntityBlock {
 
     public TrapperBlock(Properties properties) {
         super(properties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.SOUTH).setValue(POWERED, Boolean.valueOf(false)));
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.SOUTH).setValue(POWERED, Boolean.FALSE));
     }
 
     @Override
@@ -70,7 +75,10 @@ public class TrapperBlock extends BaseEntityBlock {
             entity.saveWithoutId(entityData);
 
             level.setBlock(pos, state.setValue(POWERED, Boolean.TRUE), 3);
-            level.getBlockEntity(pos).getPersistentData().put("TrappedEntity", entityData);
+            BlockEntity blockEntity = level.getBlockEntity(pos);
+            if (blockEntity instanceof TrapperBlockEntity) {
+                ((TrapperBlockEntity) blockEntity).trapEntity(entityData);
+            }
 
             entity.remove(Entity.RemovalReason.DISCARDED);
         }
@@ -78,34 +86,42 @@ public class TrapperBlock extends BaseEntityBlock {
 
     private void releaseEntity(Level level, BlockPos pos, BlockState state) {
         BlockEntity blockEntity = level.getBlockEntity(pos);
-        if (blockEntity != null && blockEntity.getPersistentData().contains("TrappedEntity")) {
-            CompoundTag entityData = blockEntity.getPersistentData().getCompound("TrappedEntity");
-            Entity entity = EntityType.loadEntityRecursive(entityData, level, (e) -> {
-                e.moveTo(Vec3.atCenterOf(pos.relative(state.getValue(FACING))));
-                return e;
-            });
+        if (blockEntity instanceof TrapperBlockEntity) {
+            TrapperBlockEntity trapperBlockEntity = (TrapperBlockEntity) blockEntity;
+            CompoundTag entityData = trapperBlockEntity.releaseEntity();
+            if (entityData != null) {
+                Entity entity = EntityType.loadEntityRecursive(entityData, level, (e) -> {
+                    e.moveTo(Vec3.atCenterOf(pos.relative(state.getValue(FACING))));
+                    return e;
+                });
 
-            if (entity != null) {
-                level.addFreshEntity(entity);
-                blockEntity.getPersistentData().remove("TrappedEntity");
+                if (entity != null) {
+                    level.addFreshEntity(entity);
+                }
             }
         }
     }
 
+    public RenderShape getRenderShape(BlockState state) {
+        return RenderShape.MODEL;
+    }
+
+//    public ItemStack getTrapperItem(TrapperBlockEntity blockEntity) {
+//        return new ItemStack(ModItems.TRAPPER_BLOCK.get(), 1);
+//    }
+//
 //    @Override
-//    public void appendHoverText(ItemStack stack, @Nullable Level level, List<Component> tooltip, TooltipFlag flag) {
-//        CompoundTag tag = stack.getTag();
-//        if (tag != null && tag.contains("BlockEntityTag") && tag.getCompound("BlockEntityTag").contains("TrappedEntity")) {
-//            CompoundTag entityData = tag.getCompound("BlockEntityTag").getCompound("TrappedEntity");
-//            String entityName = entityData.getString("id");
-//            tooltip.add(Component.literal("Contains: " + entityName));
+//    public ItemStack getCloneItemStack(BlockGetter level, BlockPos pos, BlockState state) {
+//        if (level.getBlockEntity(pos) instanceof TrapperBlockEntity blockEntity) {
+//            return this.getTrapperItem(blockEntity);
 //        }
+//        return super.getCloneItemStack(level, pos, state);
 //    }
 
-    @org.jetbrains.annotations.Nullable
+    @Nullable
     @Override
-    public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return null;
+    public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
+        return new TrapperBlockEntity(pos, state);
     }
 
     @Nullable
@@ -113,9 +129,8 @@ public class TrapperBlock extends BaseEntityBlock {
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
         return level.isClientSide ? null : (lvl, pos, st, be) -> {
             if (be instanceof TrapperBlockEntity) {
-                TrapperBlockEntity.tick(lvl, pos, st);
+                TrapperBlockEntity.tick(lvl, pos, st, (TrapperBlockEntity) be);
             }
         };
     }
 }
-
