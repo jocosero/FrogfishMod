@@ -4,10 +4,17 @@ import com.jocosero.odd_water_mobs.block.entity.TrapperBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.item.ItemEntity;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -15,9 +22,9 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
@@ -25,12 +32,14 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class TrapperBlock extends BaseEntityBlock {
-    public static final DirectionProperty FACING = DirectionalBlock.FACING;
+    public static final DirectionProperty FACING = BlockStateProperties.FACING;
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
 
     public TrapperBlock(Properties properties) {
         super(properties);
-        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(POWERED, Boolean.FALSE));
+        this.registerDefaultState(this.stateDefinition.any()
+                .setValue(FACING, Direction.SOUTH)
+                .setValue(POWERED, Boolean.FALSE));
     }
 
     @Override
@@ -44,45 +53,30 @@ public class TrapperBlock extends BaseEntityBlock {
     }
 
     @Override
-    public BlockState mirror(BlockState pState, Mirror pMirror) {
-        return pState.rotate(pMirror.getRotation(pState.getValue(FACING)));
+    public BlockState mirror(BlockState state, Mirror mirror) {
+        return state.rotate(mirror.getRotation(state.getValue(FACING)));
     }
 
     @Override
     public void neighborChanged(BlockState state, Level level, BlockPos pos, Block block, BlockPos fromPos, boolean isMoving) {
         boolean isPowered = level.hasNeighborSignal(pos);
         boolean wasPowered = state.getValue(POWERED);
-        BlockEntity blockEntity = level.getBlockEntity(pos);
 
-        if (blockEntity instanceof TrapperBlockEntity) {
-            TrapperBlockEntity trapperBlockEntity = (TrapperBlockEntity) blockEntity;
-
-            if (isPowered && !wasPowered && !trapperBlockEntity.isEntityTrapped()) {
-                level.setBlock(pos, state.setValue(POWERED, Boolean.TRUE), 3);
-                trapEntity(level, pos, state);
-            } else if (isPowered && !wasPowered && trapperBlockEntity.isEntityTrapped()) {
-                level.setBlock(pos, state.setValue(POWERED, Boolean.FALSE), 3);
-                releaseEntity(level, pos, state);
+        if (isPowered && !wasPowered) {
+            level.setBlock(pos, state.setValue(POWERED, Boolean.TRUE), 3);
+            BlockEntity blockEntity = level.getBlockEntity(pos);
+            if (blockEntity instanceof TrapperBlockEntity) {
+                TrapperBlockEntity trapperBlockEntity = (TrapperBlockEntity) blockEntity;
+                if (trapperBlockEntity.hasEntity()) {
+                    releaseEntity(level, pos, state);
+                } else {
+                    trapEntity(level, pos, state);
+                }
             }
+        } else if (!isPowered && wasPowered) {
+            level.setBlock(pos, state.setValue(POWERED, Boolean.FALSE), 3);
         }
     }
-
-    @Override
-    public int getSignal(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, Direction direction) {
-        return blockState.getValue(POWERED) ? 15 : 0;
-    }
-
-    @Override
-    public int getDirectSignal(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, Direction direction) {
-        return blockState.getValue(POWERED) ? 15 : 0;
-    }
-
-    @Override
-    public boolean isSignalSource(BlockState blockState) {
-        return true;
-    }
-
-
 
     private void trapEntity(Level level, BlockPos pos, BlockState state) {
         Direction direction = state.getValue(FACING);
@@ -139,6 +133,42 @@ public class TrapperBlock extends BaseEntityBlock {
     }
 
     @Override
+    public void playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player) {
+        if (!level.isClientSide && player.isCreative() && level.getGameRules().getBoolean(GameRules.RULE_DOBLOCKDROPS)) {
+            BlockEntity blockEntity = level.getBlockEntity(pos);
+            if (blockEntity instanceof TrapperBlockEntity trapperBlockEntity) {
+                ItemStack itemStack = new ItemStack(this);
+                if (trapperBlockEntity.hasEntity()) {
+                    CompoundTag entityData = new CompoundTag();
+                    entityData.put("EntityData", trapperBlockEntity.getEntityData());
+                    BlockItem.setBlockEntityData(itemStack, trapperBlockEntity.getType(), entityData);
+                }
+
+                ItemEntity itemEntity = new ItemEntity(level, pos.getX(), pos.getY(), pos.getZ(), itemStack);
+                itemEntity.setDefaultPickUpDelay();
+                level.addFreshEntity(itemEntity);
+            }
+        }
+
+        super.playerWillDestroy(level, pos, state, player);
+    }
+
+    @Override
+    public void setPlacedBy(Level level, BlockPos pos, BlockState state, @Nullable LivingEntity placer, ItemStack stack) {
+        if (placer != null) {
+            level.setBlock(pos, state.setValue(FACING, placer.getDirection().getOpposite()), 2);
+        }
+        super.setPlacedBy(level, pos, state, placer, stack);
+        BlockEntity blockEntity = level.getBlockEntity(pos);
+        if (blockEntity instanceof TrapperBlockEntity trapperBlockEntity) {
+            CompoundTag entityData = BlockItem.getBlockEntityData(stack);
+            if (entityData != null && entityData.contains("EntityData")) {
+                trapperBlockEntity.setEntityData(entityData.getCompound("EntityData"));
+            }
+        }
+    }
+
+    @Override
     public RenderShape getRenderShape(BlockState state) {
         return RenderShape.MODEL;
     }
@@ -158,6 +188,4 @@ public class TrapperBlock extends BaseEntityBlock {
             }
         };
     }
-
-
 }

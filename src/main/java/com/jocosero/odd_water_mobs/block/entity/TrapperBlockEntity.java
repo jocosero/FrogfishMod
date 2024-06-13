@@ -8,56 +8,76 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.Nullable;
 
 public class TrapperBlockEntity extends BlockEntity {
-    private CompoundTag trappedEntityData;
-    private boolean isEntityTrapped = false;
+    private CompoundTag entityData;
+    private boolean hasEntity;
+    private int ticks = 0;
 
     public TrapperBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.TRAPPER_BLOCK_ENTITY.get(), pos, state);
+        this.entityData = new CompoundTag();
+        this.hasEntity = false;
     }
 
     public void trapEntity(CompoundTag entityData) {
-        this.trappedEntityData = entityData;
-        this.isEntityTrapped = true;
-        this.setChanged();
+        this.entityData = entityData;
+        this.hasEntity = true;
+        setChanged();
     }
 
-    @Nullable
     public CompoundTag releaseEntity() {
-        if (this.trappedEntityData != null) {
-            CompoundTag entityData = this.trappedEntityData;
-            this.trappedEntityData = null;
-            this.isEntityTrapped = false;
-            this.setChanged();
-            return entityData;
-        }
-        return null;
+        CompoundTag data = hasEntity ? entityData : null;
+        this.entityData = new CompoundTag();
+        this.hasEntity = false;
+        setChanged();
+        return data;
     }
 
     public boolean hasEntity() {
-        return this.trappedEntityData != null;
+        return hasEntity;
     }
 
-    public boolean isEntityTrapped() {
-        return this.isEntityTrapped;
+    public CompoundTag getEntityData() {
+        return entityData;
+    }
+
+    public void setEntityData(CompoundTag entityData) {
+        this.entityData = entityData;
+        this.hasEntity = true;
+        setChanged();
+    }
+
+    @Override
+    public void saveAdditional(CompoundTag tag) {
+        super.saveAdditional(tag);
+        if (hasEntity) {
+            tag.put("EntityData", entityData);
+        }
     }
 
     @Override
     public void load(CompoundTag tag) {
         super.load(tag);
-        if (tag.contains("TrappedEntity")) {
-            trappedEntityData = tag.getCompound("TrappedEntity");
-        }
-    }
-
-    @Override
-    protected void saveAdditional(CompoundTag tag) {
-        super.saveAdditional(tag);
-        if (trappedEntityData != null) {
-            tag.put("TrappedEntity", trappedEntityData);
+        if (tag.contains("EntityData")) {
+            this.entityData = tag.getCompound("EntityData");
+            this.hasEntity = true;
+        } else {
+            this.entityData = new CompoundTag();
+            this.hasEntity = false;
         }
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, TrapperBlockEntity blockEntity) {
-        // Custom tick logic if ever needed
+        if (blockEntity.hasEntity) {
+            blockEntity.ticks++;
+            if (blockEntity.ticks >= 40) {
+                blockEntity.ticks = 0;
+            }
+        }
+    }
+
+    public boolean isShaking() {
+        return hasEntity && ticks < 20;
     }
 }
+
+
