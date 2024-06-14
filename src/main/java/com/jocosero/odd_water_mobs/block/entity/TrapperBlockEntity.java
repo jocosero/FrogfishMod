@@ -5,7 +5,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
-import org.jetbrains.annotations.Nullable;
 
 public class TrapperBlockEntity extends BlockEntity {
     private CompoundTag entityData;
@@ -16,6 +15,15 @@ public class TrapperBlockEntity extends BlockEntity {
         super(ModBlockEntities.TRAPPER_BLOCK_ENTITY.get(), pos, state);
         this.entityData = new CompoundTag();
         this.hasEntity = false;
+    }
+
+    public static void tick(Level level, BlockPos pos, BlockState state, TrapperBlockEntity blockEntity) {
+        if (blockEntity.hasEntity) {
+            blockEntity.ticks++;
+            if (blockEntity.ticks >= 40) {
+                blockEntity.ticks = 0;
+            }
+        }
     }
 
     public void trapEntity(CompoundTag entityData) {
@@ -63,15 +71,6 @@ public class TrapperBlockEntity extends BlockEntity {
         } else {
             this.entityData = new CompoundTag();
             this.hasEntity = false;
-        }
-    }
-
-    public static void tick(Level level, BlockPos pos, BlockState state, TrapperBlockEntity blockEntity) {
-        if (blockEntity.hasEntity) {
-            blockEntity.ticks++;
-            if (blockEntity.ticks >= 40) {
-                blockEntity.ticks = 0;
-            }
         }
     }
 

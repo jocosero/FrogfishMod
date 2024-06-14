@@ -10,6 +10,7 @@ import com.jocosero.odd_water_mobs.entity.client.model.HorseshoeCrabModel;
 import com.jocosero.odd_water_mobs.entity.client.model.IsopodModel;
 import com.jocosero.odd_water_mobs.particle.ModParticles;
 import com.jocosero.odd_water_mobs.particle.custom.HydrothermalSmoke;
+import com.jocosero.odd_water_mobs.particle.custom.ChumChunks;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
@@ -26,6 +27,7 @@ public class ModEventBusClientEvents {
 
     public static void setupParticles(RegisterParticleProvidersEvent registry) {
         registry.registerSpriteSet(ModParticles.HYDROTHERMAL_SMOKE.get(), HydrothermalSmoke.Factory::new);
+        registry.registerSpriteSet(ModParticles.CHUM_CHUNKS.get(), ChumChunks.Factory::new);
     }
 
     @SubscribeEvent

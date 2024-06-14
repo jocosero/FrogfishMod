@@ -13,6 +13,8 @@ public class ModParticles {
 
     public static final RegistryObject<SimpleParticleType> HYDROTHERMAL_SMOKE = PARTICLE_TYPES.register("hydrothermal_smoke", () -> new SimpleParticleType(false));
 
+    public static final RegistryObject<SimpleParticleType> CHUM_CHUNKS = PARTICLE_TYPES.register("chum_chunks", () -> new SimpleParticleType(false));
+
     public static void register(IEventBus eventBus) {
         PARTICLE_TYPES.register(eventBus);
     }
