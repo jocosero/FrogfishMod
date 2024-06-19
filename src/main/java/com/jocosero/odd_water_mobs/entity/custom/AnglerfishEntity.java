@@ -1,6 +1,7 @@
 package com.jocosero.odd_water_mobs.entity.custom;
 
 import com.jocosero.odd_water_mobs.entity.AbstractWaterMob;
+import com.jocosero.odd_water_mobs.entity.ai.FindAndEatChumGoal;
 import com.jocosero.odd_water_mobs.item.ModItems;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -51,6 +52,7 @@ public class AnglerfishEntity extends AbstractWaterMob {
 
     @Override
     protected void registerGoals() {
+        this.goalSelector.addGoal(0, new FindAndEatChumGoal(this, 1.0));
         this.goalSelector.addGoal(0, new PanicGoal(this, 1.2D));
         this.goalSelector.addGoal(1, new TemptGoal(this, 1.0D, Ingredient.of(Items.COD), false));
         this.goalSelector.addGoal(3, new RandomSwimmingGoal(this, 1.2D, 40));

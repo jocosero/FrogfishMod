@@ -1,7 +1,8 @@
 package com.jocosero.odd_water_mobs.entity.client.renderer;
 
 import com.jocosero.odd_water_mobs.OddWaterMobs;
-import com.jocosero.odd_water_mobs.entity.client.ModModelLayers;
+import com.jocosero.odd_water_mobs.entity.client.renderer.layers.AnglerfishEmissiveLayer;
+import com.jocosero.odd_water_mobs.entity.client.renderer.layers.ModModelLayers;
 import com.jocosero.odd_water_mobs.entity.client.model.AnglerfishModel;
 import com.jocosero.odd_water_mobs.entity.custom.AnglerfishEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
@@ -14,6 +15,7 @@ public class AnglerfishRenderer extends MobRenderer<AnglerfishEntity, Anglerfish
 
     public AnglerfishRenderer(EntityRendererProvider.Context pContext) {
         super(pContext, new AnglerfishModel<>(pContext.bakeLayer(ModModelLayers.ANGLERFISH_LAYER)), 0.2f);
+        this.addLayer(new AnglerfishEmissiveLayer(this));
     }
 
     @Override

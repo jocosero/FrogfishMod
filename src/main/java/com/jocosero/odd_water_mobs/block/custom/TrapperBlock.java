@@ -1,10 +1,13 @@
 package com.jocosero.odd_water_mobs.block.custom;
 
+import com.jocosero.odd_water_mobs.block.entity.ModBlockEntities;
 import com.jocosero.odd_water_mobs.block.entity.TrapperBlockEntity;
+import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.network.chat.Component;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -13,6 +16,7 @@ import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
@@ -22,9 +26,9 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 
@@ -34,17 +38,19 @@ import java.util.List;
 public class TrapperBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.FACING;
     public static final BooleanProperty POWERED = BlockStateProperties.POWERED;
+    public static final BooleanProperty HAS_ENTITY = BlockStateProperties.CAN_SUMMON;
 
     public TrapperBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any()
                 .setValue(FACING, Direction.SOUTH)
-                .setValue(POWERED, Boolean.FALSE));
+                .setValue(POWERED, Boolean.FALSE)
+                .setValue(HAS_ENTITY, Boolean.FALSE));
     }
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        builder.add(FACING, POWERED);
+        builder.add(FACING, POWERED, HAS_ENTITY);
     }
 
     @Override
@@ -62,20 +68,31 @@ public class TrapperBlock extends BaseEntityBlock {
         boolean isPowered = level.hasNeighborSignal(pos);
         boolean wasPowered = state.getValue(POWERED);
 
-        if (isPowered && !wasPowered) {
-            level.setBlock(pos, state.setValue(POWERED, Boolean.TRUE), 3);
-            BlockEntity blockEntity = level.getBlockEntity(pos);
-            if (blockEntity instanceof TrapperBlockEntity) {
-                TrapperBlockEntity trapperBlockEntity = (TrapperBlockEntity) blockEntity;
-                if (trapperBlockEntity.hasEntity()) {
+        BlockEntity blockEntity = level.getBlockEntity(pos);
+        if (blockEntity instanceof TrapperBlockEntity) {
+            TrapperBlockEntity trapperBlockEntity = (TrapperBlockEntity) blockEntity;
+            boolean hasEntity = trapperBlockEntity.hasEntity();
+            state = state.setValue(HAS_ENTITY, hasEntity);
+
+            if (isPowered && !wasPowered) {
+                level.setBlock(pos, state.setValue(POWERED, Boolean.TRUE), 3);
+                if (hasEntity) {
                     releaseEntity(level, pos, state);
                 } else {
                     trapEntity(level, pos, state);
                 }
+            } else if (!isPowered && wasPowered) {
+                level.setBlock(pos, state.setValue(POWERED, Boolean.FALSE), 3);
             }
-        } else if (!isPowered && wasPowered) {
-            level.setBlock(pos, state.setValue(POWERED, Boolean.FALSE), 3);
         }
+
+        level.sendBlockUpdated(pos, state, state, Block.UPDATE_ALL_IMMEDIATE); // Ensure immediate update
+        level.updateNeighborsAt(pos, this); // Notify neighbors
+    }
+
+    @Override
+    public void animateTick(BlockState pState, Level pLevel, BlockPos pPos, RandomSource pRandom) {
+        super.animateTick(pState, pLevel, pPos, pRandom);
     }
 
     private void trapEntity(Level level, BlockPos pos, BlockState state) {
@@ -94,16 +111,10 @@ public class TrapperBlock extends BaseEntityBlock {
                 TrapperBlockEntity trapperBlockEntity = (TrapperBlockEntity) blockEntity;
                 if (!trapperBlockEntity.hasEntity()) {
                     trapperBlockEntity.trapEntity(entityData);
-                    System.out.println("Entity trapped: " + entity.getName().getString());
                     entity.remove(Entity.RemovalReason.DISCARDED);
-                } else {
-                    System.out.println("Trapper already contains an entity.");
+                    level.sendBlockUpdated(pos, state, state, Block.UPDATE_ALL_IMMEDIATE);
                 }
-            } else {
-                System.out.println("BlockEntity is not an instance of TrapperBlockEntity.");
             }
-        } else {
-            System.out.println("No entities found to trap.");
         }
     }
 
@@ -120,15 +131,9 @@ public class TrapperBlock extends BaseEntityBlock {
 
                 if (entity != null) {
                     level.addFreshEntity(entity);
-                    System.out.println("Entity released: " + entity.getName().getString());
-                } else {
-                    System.out.println("Entity could not be loaded from data.");
+                    level.sendBlockUpdated(pos, state, state, Block.UPDATE_ALL_IMMEDIATE);
                 }
-            } else {
-                System.out.println("No entity data to release.");
             }
-        } else {
-            System.out.println("BlockEntity is not an instance of TrapperBlockEntity.");
         }
     }
 
@@ -164,6 +169,26 @@ public class TrapperBlock extends BaseEntityBlock {
             CompoundTag entityData = BlockItem.getBlockEntityData(stack);
             if (entityData != null && entityData.contains("EntityData")) {
                 trapperBlockEntity.setEntityData(entityData.getCompound("EntityData"));
+                level.setBlock(pos, state.setValue(HAS_ENTITY, Boolean.TRUE), 3);
+            }
+        }
+    }
+
+    @Override
+    public void appendHoverText(ItemStack pStack, @org.jetbrains.annotations.Nullable BlockGetter pBlockGetter, List<Component> pTooltip, TooltipFlag pFlag) {
+        super.appendHoverText(pStack, pBlockGetter, pTooltip, pFlag);
+        CompoundTag blockEntityTag = BlockItem.getBlockEntityData(pStack);
+        if (blockEntityTag != null && blockEntityTag.contains("EntityData")) {
+            CompoundTag entityData = blockEntityTag.getCompound("EntityData");
+            if (pBlockGetter instanceof Level) {
+                Level pLevel = (Level) pBlockGetter;
+                Entity entity = EntityType.loadEntityRecursive(entityData, pLevel, (e) -> e);
+                if (entity != null) {
+                    String entityName = entity.getDisplayName().getString();
+                    Component combinedTooltip = Component.translatable("tooltip.trapper_block.contains").withStyle(ChatFormatting.GRAY)
+                            .append(Component.literal(" " + entityName).withStyle(ChatFormatting.ITALIC, ChatFormatting.DARK_GRAY));
+                    pTooltip.add(combinedTooltip);
+                }
             }
         }
     }
@@ -182,10 +207,6 @@ public class TrapperBlock extends BaseEntityBlock {
     @Nullable
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type) {
-        return level.isClientSide ? null : (lvl, pos, st, be) -> {
-            if (be instanceof TrapperBlockEntity) {
-                TrapperBlockEntity.tick(lvl, pos, st, (TrapperBlockEntity) be);
-            }
-        };
+        return createTickerHelper(type, ModBlockEntities.TRAPPER_BLOCK_ENTITY.get(), level.isClientSide ? TrapperBlockEntity::clientTick : TrapperBlockEntity::serverTick);
     }
 }

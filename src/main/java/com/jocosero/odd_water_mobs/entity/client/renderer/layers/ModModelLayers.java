@@ -1,4 +1,4 @@
-package com.jocosero.odd_water_mobs.entity.client;
+package com.jocosero.odd_water_mobs.entity.client.renderer.layers;
 
 import com.jocosero.odd_water_mobs.OddWaterMobs;
 import net.minecraft.client.model.geom.ModelLayerLocation;
@@ -20,5 +20,8 @@ public static final ModelLayerLocation ANGLERFISH_LAYER = new ModelLayerLocation
 
     public static final ModelLayerLocation FROGFISH_LAYER = new ModelLayerLocation(
             new ResourceLocation(OddWaterMobs.MOD_ID,"frogfish"),"main");
+
+    public static final ModelLayerLocation TRAPPER_LAYER = new ModelLayerLocation(
+            new ResourceLocation(OddWaterMobs.MOD_ID,"trapper_block_entity"),"main");
 
 }

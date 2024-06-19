@@ -1,7 +1,7 @@
 package com.jocosero.odd_water_mobs.entity.client.renderer;
 
 import com.jocosero.odd_water_mobs.OddWaterMobs;
-import com.jocosero.odd_water_mobs.entity.client.ModModelLayers;
+import com.jocosero.odd_water_mobs.entity.client.renderer.layers.ModModelLayers;
 import com.jocosero.odd_water_mobs.entity.client.model.IsopodModel;
 import com.jocosero.odd_water_mobs.entity.custom.IsopodEntity;
 import com.mojang.blaze3d.vertex.PoseStack;

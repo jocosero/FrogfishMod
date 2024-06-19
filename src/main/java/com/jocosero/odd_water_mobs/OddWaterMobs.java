@@ -74,8 +74,7 @@ public class OddWaterMobs {
             //Items that serve as chum ingredients
             ChumBarrelBlock.chumIngredients();
             //Potion brewing recipes
-            BrewingRecipeRegistry.addRecipe(new PotionBrewingRecipe(Potions.AWKWARD, ModItems.FROGFISH.get(), ModPotions.ALLURING_POTION.get()));
-            BrewingRecipeRegistry.addRecipe(new PotionBrewingRecipe(Potions.AWKWARD, ModItems.RAW_ANGLERFISH.get(), ModPotions.ALLURING_POTION.get()));
+            BrewingRecipeRegistry.addRecipe(new PotionBrewingRecipe(Potions.AWKWARD, ModItems.ANGLER_LURE.get(), ModPotions.ALLURING_POTION.get()));
             BrewingRecipeRegistry.addRecipe(new PotionBrewingRecipe(ModPotions.ALLURING_POTION.get(), Items.REDSTONE, ModPotions.LONG_ALLURING_POTION.get()));
             BrewingRecipeRegistry.addRecipe(new PotionBrewingRecipe(Potions.AWKWARD, ModItems.HORSESHOE_CRAB_THORAX.get(), ModPotions.HEALING_VIGOR_POTION.get()));
             BrewingRecipeRegistry.addRecipe(new PotionBrewingRecipe(Potions.LEAPING, ModItems.MUDSKIPPER_FIN.get(), ModPotions.MUDSKIPPING_POTION.get()));
@@ -100,6 +99,7 @@ public class OddWaterMobs {
             EntityRenderers.register(ModEntities.HORSESHOE_CRAB.get(), HorseshoeCrabRenderer::new);
 //            EntityRenderers.register(ModEntities.COELACANTH.get(), CoelacanthRenderer::new);
             EntityRenderers.register(ModEntities.FROGFISH.get(), FrogfishRenderer::new);
+            BlockEntityRenderers.register(ModBlockEntities.TRAPPER_BLOCK_ENTITY.get(), TrapperBlockEntityRenderer::new);
         }
     }
 }

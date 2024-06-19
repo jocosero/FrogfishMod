@@ -7,9 +7,9 @@ import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 
 public class TrapperBlockEntity extends BlockEntity {
+    public int ticks = 0;
     private CompoundTag entityData;
     private boolean hasEntity;
-    private int ticks = 0;
 
     public TrapperBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.TRAPPER_BLOCK_ENTITY.get(), pos, state);
@@ -17,7 +17,16 @@ public class TrapperBlockEntity extends BlockEntity {
         this.hasEntity = false;
     }
 
-    public static void tick(Level level, BlockPos pos, BlockState state, TrapperBlockEntity blockEntity) {
+    public static void serverTick(Level level, BlockPos pos, BlockState state, TrapperBlockEntity blockEntity) {
+        if (blockEntity.hasEntity) {
+            blockEntity.ticks++;
+            if (blockEntity.ticks >= 40) {
+                blockEntity.ticks = 0;
+            }
+        }
+    }
+
+    public static void clientTick(Level level, BlockPos pos, BlockState state, TrapperBlockEntity blockEntity) {
         if (blockEntity.hasEntity) {
             blockEntity.ticks++;
             if (blockEntity.ticks >= 40) {
@@ -74,9 +83,10 @@ public class TrapperBlockEntity extends BlockEntity {
         }
     }
 
-    public boolean isShaking() {
-        return hasEntity && ticks < 20;
+    @Override
+    public boolean triggerEvent(int id, int type) {
+        super.triggerEvent(id, type);
+        this.setChanged();
+        return true;
     }
 }
-
-

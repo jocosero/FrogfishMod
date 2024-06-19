@@ -4,6 +4,7 @@ import com.jocosero.odd_water_mobs.OddWaterMobs;
 import com.jocosero.odd_water_mobs.block.ModBlocks;
 import com.jocosero.odd_water_mobs.entity.ModEntities;
 import com.jocosero.odd_water_mobs.item.custom.FrogfishBucketItem;
+import com.jocosero.odd_water_mobs.item.custom.TrapperBlockItem;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.MobBucketItem;

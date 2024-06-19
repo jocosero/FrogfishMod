@@ -5,18 +5,19 @@
     "front": "odd_water_mobs:block/trapper_front",
     "back": "odd_water_mobs:block/trapper_back",
     "side": "odd_water_mobs:block/trapper_side",
-    "top": "odd_water_mobs:block/trapper_top",
+    "top": "odd_water_mobs:block/trapper_lid",
     "bottom": "odd_water_mobs:block/trapper_bottom"
   },
   "elements": [
     {
       "from": [0, 0, 0],
-      "to": [16, 13, 16],
+      "to": [16, 16, 16],
+      "rotation": {"angle": 0, "axis": "y", "origin": [8, 8, 8]},
       "faces": {
-        "north": {"uv": [0, 3, 16, 16], "texture": "#front", "cullface": "north"},
-        "east": {"uv": [16, 3, 0, 16], "texture": "#side", "cullface": "east"},
-        "south": {"uv": [0, 3, 16, 16], "texture": "#back", "cullface": "south"},
-        "west": {"uv": [0, 3, 16, 16], "texture": "#side", "cullface": "west"},
+        "north": {"uv": [0, 0, 16, 16], "texture": "#front", "cullface": "north"},
+        "east": {"uv": [16, 0, 0, 16], "texture": "#side", "cullface": "east"},
+        "south": {"uv": [0, 0, 16, 16], "texture": "#back", "cullface": "south"},
+        "west": {"uv": [0, 0, 16, 16], "texture": "#side", "cullface": "west"},
         "up": {"uv": [0, 16, 16, 0], "texture": "#top", "cullface": "up"},
         "down": {"uv": [0, 0, 16, 16], "texture": "#bottom", "cullface": "down"}
       }

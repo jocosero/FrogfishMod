@@ -62,6 +62,7 @@
   "block.odd_water_mobs.hydrothermal_vent":"Hydrothermal Vent",
   "block.odd_water_mobs.chum_barrel": "Chum Barrel",
   "block.odd_water_mobs.trapper": "Trapper",
+  "tooltip.trapper_block.contains": "Inside:",
   "block.odd_water_mobs.chum": "Chum",
 
   "effect.odd_water_mobs.sinking": "Sinking",
@@ -109,4 +110,5 @@
   "particle.odd_water_mobs:hydrothermal_smoke": "Hydrothermal Smoke",
 
   "creativetab.odd_water_mobs": "Odd Water Mobs"
+
 }

@@ -5,7 +5,7 @@ import com.jocosero.odd_water_mobs.block.entity.ModBlockEntities;
 import com.jocosero.odd_water_mobs.block.entity.renderer.TrapperBlockEntityRenderer;
 import com.jocosero.odd_water_mobs.entity.client.model.AnglerfishModel;
 import com.jocosero.odd_water_mobs.entity.client.model.FrogfishModel;
-import com.jocosero.odd_water_mobs.entity.client.ModModelLayers;
+import com.jocosero.odd_water_mobs.entity.client.renderer.layers.ModModelLayers;
 import com.jocosero.odd_water_mobs.entity.client.model.HorseshoeCrabModel;
 import com.jocosero.odd_water_mobs.entity.client.model.IsopodModel;
 import com.jocosero.odd_water_mobs.particle.ModParticles;
@@ -37,6 +37,7 @@ public class ModEventBusClientEvents {
         event.registerLayerDefinition(ModModelLayers.HORSESHOE_CRAB_LAYER, HorseshoeCrabModel::createBodyLayer);
 //        event.registerLayerDefinition(ModModelLayers.COELACANTH_LAYER, CoelacanthModel::createBodyLayer);
         event.registerLayerDefinition(ModModelLayers.FROGFISH_LAYER, FrogfishModel::createBodyLayer);
+        event.registerLayerDefinition(ModModelLayers.TRAPPER_LAYER, TrapperBlockEntityRenderer::createBodyLayer);
     }
 
     @SubscribeEvent
